@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Guada Studio: diseño gráfico, branding, identidad visual, redes sociales y piezas digitales para marcas con intención."
+      data-meta-description
+    />
+    <title>Guada Studio | Diseño gráfico y branding</title>
+    <link rel="icon" href="assets/FavIcon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,100,200..800&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="inicio">
+      <nav class="navbar" aria-label="Navegación principal" data-nav>
+        <a class="brand" href="#inicio" aria-label="Guada Studio, ir al inicio" data-brand-link>
+          <img src="assets/LOGO-Bordo.svg" alt="" aria-hidden="true" />
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="site-menu"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-menu" id="site-menu">
+          <li><a href="#inicio" data-nav-link="home">Inicio</a></li>
+          <li><a href="#portfolio" data-nav-link="portfolio">Portfolio</a></li>
+          <li><a href="#servicios" data-nav-link="services">Servicios</a></li>
+          <li><a href="#contacto" data-nav-link="contact">Contacto</a></li>
+          <li>
+            <button
+              class="language-toggle"
+              type="button"
+              aria-label="Cambiar idioma a inglés"
+              data-language-toggle
+            >
+              EN
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__previews" aria-hidden="true">
+          <div class="hero-preview-group" data-preview-category="branding">
+            <img src="assets/services/branding/branding-01.jpg" alt="" />
+            <img src="assets/services/branding/branding-06.jpg" alt="" />
+            <img src="assets/services/branding/branding-03.jpg" alt="" />
+          </div>
+          <div class="hero-preview-group" data-preview-category="redes">
+            <img src="assets/services/redes-sociales/redes-sociales-01.jpg" alt="" />
+            <img src="assets/services/redes-sociales/redes-sociales-07.jpg" alt="" />
+            <img src="assets/services/redes-sociales/redes-sociales-05.jpg" alt="" />
+          </div>
+          <div class="hero-preview-group" data-preview-category="contenido">
+            <img src="assets/services/web/web-06.jpg" alt="" />
+            <img src="assets/services/web/web-05.jpg" alt="" />
+            <img src="assets/services/web/web-03.jpg" alt="" />
+          </div>
+        </div>
+
+        <div class="hero__content">
+          <h1 id="hero-title">
+            Damos forma a eso que tu marca sueña ser a través de
+            <span class="hero-keyword" data-category="branding" tabindex="0">branding</span>,
+            contenido para
+            <span class="hero-keyword" data-category="redes" tabindex="0">redes sociales</span>
+            y
+            <span class="hero-keyword" data-category="contenido" tabindex="0">páginas web</span>.
+          </h1>
+          <div class="hero__actions" aria-label="Acciones principales">
+            <a class="button button--primary" href="#portfolio" data-hero-action="portfolio">Ver portfolio</a>
+            <a class="button button--secondary" href="mailto:hola@guadastudio.com" data-hero-action="contact">
+              Trabajemos juntos
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="ticker" aria-label="Servicios destacados">
+        <div class="ticker__track">
+          <span>
+            DISEÑO Y DESARROLLO WEB — DISEÑO — REDES SOCIALES — FOTOGRAFÍA —
+            DIRECCIÓN DE ARTE — NAMING — BRANDING —
+          </span>
+          <span aria-hidden="true">
+            DISEÑO Y DESARROLLO WEB — DISEÑO — REDES SOCIALES — FOTOGRAFÍA —
+            DIRECCIÓN DE ARTE — NAMING — BRANDING —
+          </span>
+          <span aria-hidden="true">
+            DISEÑO Y DESARROLLO WEB — DISEÑO — REDES SOCIALES — FOTOGRAFÍA —
+            DIRECCIÓN DE ARTE — NAMING — BRANDING —
+          </span>
+        </div>
+      </section>
+
+      <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
+        <div class="section-heading">
+          <p class="eyebrow">Portfolio</p>
+          <h2 id="portfolio-title" data-portfolio-title>Últimos proyectos</h2>
+        </div>
+
+        <div class="carousel" aria-label="Carrusel infinito de proyectos">
+          <div class="carousel__track">
+            <article class="project-card">
+              <a class="project-card__image-link" >
+                <img
+                  src="assets/portfolio-jpg/dos-orillas.jpg"
+                  alt="Composición abstracta colorida para Dos Orillas"
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Branding</span>
+                <h3>Dos Orillas</h3>
+              </div>
+            </article>
+            <article class="project-card">
+              <a class="project-card__image-link">
+                <img
+                  src="assets/portfolio-jpg/valentina.jpg"
+                  alt="Branding y ecommerce para Valentina"
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Branding / Ecommerce</span>
+                <h3>Valentina</h3>
+              </div>
+            </article>
+            <article class="project-card">
+              <a class="project-card__image-link">
+                <img
+                  src="assets/portfolio-jpg/checkpoint-charlie.jpg"
+                  alt="Diseño gráfico y arquigrafía para Checkpoint Charlie"
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Diseño gráfico / Arquigrafía</span>
+                <h3>Checkpoint Charlie</h3>
+              </div>
+            </article>
+            <article class="project-card">
+              <a class="project-card__image-link" >
+                <img
+                  src="assets/portfolio-jpg/dulces-serra.jpg"
+                  alt="Packaging para Dulces Serra"
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Packaging</span>
+                <h3>Dulces Serra</h3>
+              </div>
+            </article>
+            <article class="project-card">
+              <a class="project-card__image-link" >
+                <img
+                  src="assets/portfolio-jpg/muvon.jpg"
+                  alt="Contenido para Paid Media para Muvon"
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Contenido para Paid Media</span>
+                <h3>Muvon</h3>
+              </div>
+            </article>
+            <article class="project-card">
+              <a class="project-card__image-link"  >
+                <img
+                  src="assets/portfolio-jpg/wabro.jpg"
+                  alt="Diseño de tienda online para Wabro"
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Diseño de tienda online</span>
+                <h3>Wabro</h3>
+              </div>
+            </article>
+
+            <article class="project-card" aria-hidden="true">
+              <a class="project-card__image-link" >
+                <img
+                  src="assets/portfolio-jpg/dos-orillas.jpg"
+                  alt=""
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Branding</span>
+                <h3>Dos Orillas</h3>
+              </div>
+            </article>
+            <article class="project-card" aria-hidden="true">
+              <a class="project-card__image-link" >
+                <img
+                  src="assets/portfolio-jpg/valentina.jpg"
+                  alt=""
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Branding / Ecommerce</span>
+                <h3>Valentina</h3>
+              </div>
+            </article>
+            <article class="project-card" aria-hidden="true">
+              <a class="project-card__image-link">
+                <img
+                  src="assets/portfolio-jpg/checkpoint-charlie.jpg"
+                  alt=""
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Diseño gráfico / Arquigrafía</span>
+                <h3>Checkpoint Charlie</h3>
+              </div>
+            </article>
+            <article class="project-card" aria-hidden="true">
+              <a class="project-card__image-link" >
+                <img
+                  src="assets/portfolio-jpg/dulces-serra.jpg"
+                  alt=""
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Packaging</span>
+                <h3>Dulces Serra</h3>
+              </div>
+            </article>
+            <article class="project-card" aria-hidden="true">
+              <a class="project-card__image-link" >
+                <img
+                  src="assets/portfolio-jpg/muvon.jpg"
+                  alt=""
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Contenido para Paid Media</span>
+                <h3>Muvon</h3>
+              </div>
+            </article>
+            <article class="project-card" aria-hidden="true">
+              <a class="project-card__image-link" >
+                <img
+                  src="assets/portfolio-jpg/wabro.jpg"
+                  alt=""
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Diseño de tienda online</span>
+                <h3>Wabro</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="services" id="servicios" aria-labelledby="services-title">
+       
+
+        <div class="services-accordion" aria-label="Acordeón de servicios">
+          <article
+            class="service-panel is-active"
+            style="--panel-color: #efece8"
+            data-service-images="assets/services/branding/branding-01.jpg,assets/services/branding/branding-02.jpg,assets/services/branding/branding-03.jpg,assets/services/branding/branding-04.jpg,assets/services/branding/branding-05.jpg,assets/services/branding/branding-06.jpg"
+          >
+            <button class="service-panel__tab" type="button" aria-expanded="true">
+              <span>Branding</span>
+            </button>
+            <div class="service-panel__content">
+              <h3>Branding</h3>
+              <p>
+                Con más de 10 marcas diseñadas en el último año para clientes
+                de todo el mundo, incluyendo proyectos desarrollados para
+                estudios como Ten10 Design, trabajé el branding de punta a
+                punta, combinando estética, criterio y una base sólida para
+                acompañar el crecimiento de cada marca.
+              </p>
+              <button class="service-panel__cta" type="button" data-open-packages="branding">
+                Ver packs
+              </button>
+            </div>
+          </article>
+
+          <article
+            class="service-panel"
+            style="--panel-color: #530a05; --panel-text: #ffffff"
+            data-service-images="assets/services/diseno-grafico/diseno-grafico-01.jpg,assets/services/diseno-grafico/diseno-grafico-02.jpg,assets/services/diseno-grafico/diseno-grafico-03.jpg,assets/services/diseno-grafico/diseno-grafico-04.jpg,assets/services/diseno-grafico/diseno-grafico-05.jpg,assets/services/diseno-grafico/diseno-grafico-06.jpg"
+          >
+            <button class="service-panel__tab" type="button" aria-expanded="false">
+              <span>Diseño gráfico</span>
+            </button>
+            <div class="service-panel__content">
+              <h3>Diseño gráfico</h3>
+              <p>
+                Packaging, piezas impresas y aplicaciones para espacios
+                comerciales pensadas para que tu marca se vea consistente en
+                cada punto de contacto.
+              </p>
+            </div>
+          </article>
+
+          <article
+            class="service-panel"
+            style="--panel-color: #e24b37"
+            data-service-images="assets/services/redes-sociales/redes-sociales-01.jpg,assets/services/redes-sociales/redes-sociales-07.jpg,assets/services/redes-sociales/redes-sociales-03.jpg,assets/services/redes-sociales/redes-sociales-04.jpg,assets/services/redes-sociales/redes-sociales-05.jpg,assets/services/redes-sociales/redes-sociales-06.jpg"
+          >
+            <button class="service-panel__tab" type="button" aria-expanded="false">
+              <span>Redes sociales</span>
+            </button>
+            <div class="service-panel__content">
+              <h3>Redes sociales</h3>
+              <p>
+                Con experiencia gestionando grandes comunidades, creamos
+                contenido para redes sociales que ayuda a tu marca a crecer,
+                conectar y mantenerse presente en los medios digitales.
+              </p>
+              <button class="service-panel__cta" type="button" data-open-packages="redes">
+                Ver packs
+              </button>
+            </div>
+          </article>
+
+          <article
+            class="service-panel"
+            style="--panel-color: #9bc5ff"
+            data-service-images="assets/services/fotografia/fotografia-01.jpg,assets/services/fotografia/fotografia-02.jpg,assets/services/fotografia/fotografia-03.jpg,assets/services/fotografia/fotografia-04.jpg,assets/services/fotografia/fotografia-05.jpg,assets/services/fotografia/fotografia-06.jpg"
+          >
+            <button class="service-panel__tab" type="button" aria-expanded="false">
+              <span>Fotografía</span>
+            </button>
+            <div class="service-panel__content">
+              <h3>Fotografía</h3>
+              <p>
+                Acompañamos la creación de contenido con una dirección creativa
+                que asegura coherencia, optimiza tiempos y cuida cada detalle
+                del resultado final.
+              </p>
+            </div>
+          </article>
+
+          <article
+            class="service-panel"
+            style="--panel-color: #7a7531; --panel-text: #ffffff"
+            data-service-images="assets/services/web/web-01.jpg,assets/services/web/web-02.jpg,assets/services/web/web-03.jpg,assets/services/web/web-04.jpg,assets/services/web/web-05.jpg,assets/services/web/web-06.jpg"
+          >
+            <button class="service-panel__tab" type="button" aria-expanded="false">
+              <span>Desarrollo web</span>
+            </button>
+            <div class="service-panel__content">
+              <h3>Diseño y desarrollo web</h3>
+              <p>
+                Diseñamos y desarrollamos sitios web de alto impacto, pensados
+                para transmitir el valor de tu marca y convertir visitas en
+                oportunidades.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="service-hover-preview" aria-hidden="true">
+        <img alt="" />
+        <img alt="" />
+        <img alt="" />
+        <img alt="" />
+        <img alt="" />
+        <img alt="" />
+      </div>
+
+      <section class="process-cards" aria-label="Proceso creativo">
+        <div class="process-cards__inner">
+          <div class="process-card-stack">
+            <article class="process-card process-card--one" tabindex="0">
+              <img
+                class="process-card__icon"
+                src="assets/process-icons/card-01.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              <p>Gestionando comunidades de +150 mil seguidores.</p>
+            </article>
+            <article class="process-card process-card--two" tabindex="0">
+              <img
+                class="process-card__icon"
+                src="assets/process-icons/card-02.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              <p>+10 marcas desarrolladas en el último año.</p>
+            </article>
+            <article class="process-card process-card--three" tabindex="0">
+              <img
+                class="process-card__icon"
+                src="assets/process-icons/card-03.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              <p>Trabajando para Buenos Aires, Costa Rica, España y Francia.</p>
+            </article>
+            <article class="process-card process-card--four" tabindex="0">
+              <img
+                class="process-card__icon"
+                src="assets/process-icons/card-04.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              <p>Experiencia en retail, gastronomía y hotelería.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div
+        class="packages-modal"
+        id="branding-packages-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="branding-packages-title"
+        hidden
+      >
+        <div class="packages-modal__overlay" data-close-packages></div>
+        <div class="packages-modal__dialog">
+          <button
+            class="packages-modal__close"
+            type="button"
+            aria-label="Cerrar packs"
+            data-close-packages
+          >
+            ×
+          </button>
+          <div class="packages-modal__heading">
+            <p class="eyebrow" data-packages-eyebrow>Branding</p>
+            <h2 id="branding-packages-title" data-packages-title>Packs</h2>
+          </div>
+
+          <div class="branding-packages" aria-label="Packs de branding" data-packages-list>
+            <article class="branding-package">
+              <h4>Básico</h4>
+              <p>
+                Pensado para quienes quieren salir al mercado rápido con una
+                marca profesional, clara y bien resuelta.
+              </p>
+              <strong>Incluye:</strong>
+              <ul>
+                <li>Reunión inicial de kickoff.</li>
+                <li>Presentación de moodboard para definir la estética general.</li>
+                <li>Propuesta de logo principal con 2 instancias de modificación.</li>
+                <li>Entrega final del logo.</li>
+                <li>Brandbook completo.</li>
+              </ul>
+              <p class="branding-package__meta">Tiempo estimado: 20 días.</p>
+              <a
+                class="branding-package__cta"
+                href="mailto:hola@guadastudio.com?subject=Cotizar%20Pack%20B%C3%A1sico&body=Hola!%20Quiero%20cotizar%20el%20pack%20B%C3%A1sico%20de%20branding."
+              >
+                Cotizar este pack
+              </a>
+            </article>
+
+            <article class="branding-package">
+              <h4>Intermedio</h4>
+              <p>
+                Ideal para quienes buscan construir una marca desde una mirada
+                más estratégica, con dirección, criterio y propósito.
+              </p>
+              <strong>Incluye:</strong>
+              <ul>
+                <li>Reunión inicial de kickoff.</li>
+                <li>Presentación de moodboard con 2 opciones conceptuales para definir la estética general.</li>
+                <li>Propuesta de 2 opciones de logo.</li>
+                <li>Desarrollo de 4 aplicaciones básicas a elección, como tarjetas personales, tote bag, vasos, entre otras.</li>
+                <li>2 instancias de modificación.</li>
+                <li>Entrega final del logo y aplicaciones en archivos editables.</li>
+                <li>Brandbook completo.</li>
+              </ul>
+              <p class="branding-package__meta">Tiempo estimado: 30 días.</p>
+              <a
+                class="branding-package__cta"
+                href="mailto:hola@guadastudio.com?subject=Cotizar%20Pack%20Intermedio&body=Hola!%20Quiero%20cotizar%20el%20pack%20Intermedio%20de%20branding."
+              >
+                Cotizar este pack
+              </a>
+            </article>
+
+            <article class="branding-package">
+              <h4>PRO</h4>
+              <p>
+                Pensado para quienes quieren llevar su marca al siguiente nivel,
+                desarrollando un sistema de identidad completo, consistente y
+                aplicable a distintos puntos de contacto.
+              </p>
+              <strong>Incluye:</strong>
+              <ul>
+                <li>Reunión inicial de kickoff.</li>
+                <li>Presentación de moodboard con 2 opciones conceptuales para definir la estética general.</li>
+                <li>Propuesta de 2 opciones de logo.</li>
+                <li>Desarrollo de 8 aplicaciones a elección, como templates para redes sociales, vasos, cartelería, indumentaria, entre otras.</li>
+                <li>2 instancias de modificación.</li>
+                <li>Entrega final del logo y aplicaciones en archivos editables.</li>
+                <li>Brandbook completo.</li>
+              </ul>
+              <p class="branding-package__meta">Tiempo estimado: 45 días.</p>
+              <a
+                class="branding-package__cta"
+                href="mailto:hola@guadastudio.com?subject=Cotizar%20Pack%20PRO&body=Hola!%20Quiero%20cotizar%20el%20pack%20PRO%20de%20branding."
+              >
+                Cotizar este pack
+              </a>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <section class="contact" id="contacto" aria-labelledby="contact-title">
+        <div class="contact__brand">
+          <img src="assets/LOGO-naranja.svg" alt="Guada Studio" />
+        </div>
+        <div class="contact__cta">
+          <h2 id="contact-title" data-contact-title>Don't be shy, give REVE a try!</h2>
+          <a class="button button--primary contact-gooey-button" href="mailto:hola@guadastudio.com">
+            <span class="contact-gooey-button__blobs" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <span class="contact-gooey-button__label">Escribinos</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p><span data-footer-credit>Por Guadalupe Petriz</span> | <span id="current-year"></span></p>
+      <ul aria-label="Redes sociales">
+        <li><a href="#" aria-label="Instagram de Guada Studio">Instagram</a></li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/guadipe/"
+            aria-label="LinkedIn de Guadalupe Petriz"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+    </footer>
+
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
