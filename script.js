@@ -39,8 +39,8 @@ const translations = {
   es: {
     htmlLang: "es",
     meta:
-      "Guada Studio: diseño gráfico, branding, identidad visual, redes sociales y piezas digitales para marcas con intención.",
-    title: "Guada Studio | Diseño gráfico y branding",
+      "Creative Studio",
+    title: "RÊVE Studio",
     navLabel: "Navegación principal",
     brandLabel: "Guada Studio, ir al inicio",
     menuOpen: "Abrir menú",
@@ -291,8 +291,8 @@ const translations = {
   en: {
     htmlLang: "en",
     meta:
-      "Guada Studio: graphic design, branding, visual identity, social media and digital pieces for intentional brands.",
-    title: "Guada Studio | Graphic Design and Branding",
+      "Creative Studio",
+    title: "RÊVE Studio",
     navLabel: "Main navigation",
     brandLabel: "Guada Studio, go to top",
     menuOpen: "Open menu",
@@ -994,6 +994,9 @@ if (servicePanels.length) {
 
 // Collage sutil de imagenes al pasar por cada servicio.
 if (servicePanels.length && serviceHoverPreview && serviceHoverImages.length) {
+  const canUseServicePreview = window.matchMedia(
+    "(hover: hover) and (pointer: fine) and (min-width: 901px)"
+  ).matches;
   const moveServicePreview = (event) => {
     document.documentElement.style.setProperty(
       "--service-preview-x",
@@ -1006,6 +1009,8 @@ if (servicePanels.length && serviceHoverPreview && serviceHoverImages.length) {
   };
 
   const showServicePreview = (panel, event) => {
+    if (!canUseServicePreview) return;
+
     const imagePaths = panel.dataset.serviceImages
       ? panel.dataset.serviceImages.split(",")
       : [];
@@ -1029,14 +1034,16 @@ if (servicePanels.length && serviceHoverPreview && serviceHoverImages.length) {
     serviceHoverPreview.classList.remove("is-visible");
   };
 
-  servicePanels.forEach((panel) => {
-    panel.addEventListener("mouseenter", (event) => {
-      showServicePreview(panel, event);
-    });
+  if (canUseServicePreview) {
+    servicePanels.forEach((panel) => {
+      panel.addEventListener("mouseenter", (event) => {
+        showServicePreview(panel, event);
+      });
 
-    panel.addEventListener("mousemove", moveServicePreview);
-    panel.addEventListener("mouseleave", hideServicePreview);
-  });
+      panel.addEventListener("mousemove", moveServicePreview);
+      panel.addEventListener("mouseleave", hideServicePreview);
+    });
+  }
 }
 
 // Popup de packs de servicios.
@@ -1083,7 +1090,7 @@ if (packagesModal && openPackagesButtons.length) {
     }
 
     cta.className = "branding-package__cta";
-    cta.href = `mailto:hola@guadastudio.com?subject=${encodeURIComponent(
+    cta.href = `mailto:guadi.petriz@gmail.com?subject=${encodeURIComponent(
       pack.subject
     )}&body=${encodeURIComponent(pack.body)}`;
     cta.textContent = translations[currentLanguage].quoteCta;
