@@ -125,7 +125,7 @@ const translations = {
     contactButton: "Escribinos",
     footerCredit: "Por Guadalupe Petriz",
     footerSocialLabel: "Redes sociales",
-    instagramLabel: "Instagram de Guada Studio",
+    instagramLabel: "Instagram de REVE Studio",
     closePacks: "Cerrar packs",
     quoteCta: "Cotizar este pack",
     packages: {
@@ -377,7 +377,7 @@ const translations = {
     contactButton: "Escribinos",
     footerCredit: "By Guadalupe Petriz",
     footerSocialLabel: "Social media",
-    instagramLabel: "Guada Studio Instagram",
+    instagramLabel: "REVE Studio Instagram",
     closePacks: "Close packs",
     quoteCta: "Quote this pack",
     packages: {
@@ -1090,7 +1090,7 @@ if (packagesModal && openPackagesButtons.length) {
     }
 
     cta.className = "branding-package__cta";
-    cta.href = `mailto:guadi.petriz@gmail.com?subject=${encodeURIComponent(
+    cta.href = `mailto:hola.revestudio@gmail.com?subject=${encodeURIComponent(
       pack.subject
     )}&body=${encodeURIComponent(pack.body)}`;
     cta.textContent = translations[currentLanguage].quoteCta;
