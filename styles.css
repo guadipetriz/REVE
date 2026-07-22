@@ -223,8 +223,8 @@ h2 {
 h1 {
   max-width: 860px;
   margin-inline: auto;
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(2.1rem, 4.65vw, 4.85rem);
+  font-family: "Bricolage Grotesque", Arial, sans-serif;
+  font-size: clamp(1.95rem, 4.2vw, 4.35rem);
   font-style: normal;
   font-weight: 400;
 }
@@ -273,7 +273,7 @@ h2 {
   display: inline-block;
   cursor: default;
   color: #000000;
-  font-family: "Instrument Serif", Georgia, serif;
+  font-family: "Bricolage Grotesque", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   outline: none;
