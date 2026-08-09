@@ -47,7 +47,7 @@
 
         <ul class="nav-menu" id="site-menu">
           <li><a href="#inicio" data-nav-link="home">Inicio</a></li>
-          <li><a href="#portfolio" data-nav-link="portfolio">Portfolio</a></li>
+          <li><a href="proyectos.html" data-nav-link="portfolio">Proyectos</a></li>
           <li><a href="#servicios" data-nav-link="services">Servicios</a></li>
           <li><a href="#contacto" data-nav-link="contact">Contacto</a></li>
           <li>
@@ -70,7 +70,7 @@
           <div class="hero-preview-group" data-preview-category="branding">
             <img src="assets/services/branding/branding-01.jpg" alt="" />
             <img src="assets/services/branding/branding-06.jpg" alt="" />
-            <img src="assets/services/branding/branding-03.jpg" alt="" />
+            <img src="assets/services/branding/branding-07.jpg" alt="" />
           </div>
           <div class="hero-preview-group" data-preview-category="redes">
             <img src="assets/services/redes-sociales/redes-sociales-01.jpg" alt="" />
@@ -94,7 +94,7 @@
             <span class="hero-keyword" data-category="contenido" tabindex="0">páginas web</span>.
           </h1>
           <div class="hero__actions" aria-label="Acciones principales">
-            <a class="button button--primary" href="#portfolio" data-hero-action="portfolio">Ver portfolio</a>
+            <a class="button button--primary" href="proyectos.html" data-hero-action="portfolio">Ver proyectos</a>
             <a class="button button--secondary" href="mailto:hola.revestudio@gmail.com" data-hero-action="contact">
               Trabajemos juntos
             </a>
@@ -127,6 +127,18 @@
 
         <div class="carousel" aria-label="Carrusel infinito de proyectos">
           <div class="carousel__track">
+            <article class="project-card">
+              <a class="project-card__image-link" href="proyectos.html">
+                <img
+                  src="assets/services/branding/branding-07.jpg"
+                  alt="Proyecto de identidad visual Olen Aroa"
+                />
+              </a>
+              <div class="project-card__content">
+                <span>Branding</span>
+                <h3>Olen Aroa</h3>
+              </div>
+            </article>
             <article class="project-card">
               <a class="project-card__image-link" >
                 <img
@@ -200,6 +212,15 @@
               </div>
             </article>
 
+            <article class="project-card" aria-hidden="true">
+              <a class="project-card__image-link" href="proyectos.html" tabindex="-1">
+                <img src="assets/services/branding/branding-07.jpg" alt="" />
+              </a>
+              <div class="project-card__content">
+                <span>Branding</span>
+                <h3>Olen Aroa</h3>
+              </div>
+            </article>
             <article class="project-card" aria-hidden="true">
               <a class="project-card__image-link" >
                 <img
@@ -283,7 +304,7 @@
           <article
             class="service-panel is-active"
             style="--panel-color: #efece8"
-            data-service-images="assets/services/branding/branding-01.jpg,assets/services/branding/branding-02.jpg,assets/services/branding/branding-03.jpg,assets/services/branding/branding-04.jpg,assets/services/branding/branding-05.jpg,assets/services/branding/branding-06.jpg"
+            data-service-images="assets/services/branding/branding-01.jpg,assets/services/branding/branding-02.jpg,assets/services/branding/branding-03.jpg,assets/services/branding/branding-04.jpg,assets/services/branding/branding-07.jpg,assets/services/branding/branding-06.jpg"
           >
             <button class="service-panel__tab" type="button" aria-expanded="true">
               <span>Branding</span>
@@ -371,10 +392,22 @@
             <div class="service-panel__content">
               <h3>Diseño y desarrollo web</h3>
               <p>
-                Diseñamos y desarrollamos sitios web de alto impacto, pensados
-                para transmitir el valor de tu marca y convertir visitas en
-                oportunidades.
+                Diseñamos y desarrollamos sitios web de alto impacto, desde
+                landing pages express hasta tiendas online, pensados para
+                transmitir el valor de tu marca y convertir visitas en oportunidades.
               </p>
+              <div class="service-panel__actions">
+                <a
+                  class="service-panel__cta"
+                  href="mailto:hola.revestudio@gmail.com?subject=Cotizar%20mi%20p%C3%A1gina%20web&body=Hola!%20Quiero%20cotizar%20mi%20p%C3%A1gina%20web."
+                  data-web-action="quote"
+                >Quiero cotizar mi página web</a>
+                <a
+                  class="service-panel__cta"
+                  href="web-en-5-dias.html"
+                  data-web-action="express"
+                >Servicio de web Express</a>
+              </div>
             </div>
           </article>
         </div>

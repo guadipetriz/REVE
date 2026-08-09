@@ -49,7 +49,7 @@ const translations = {
     switchText: "EN",
     nav: {
       home: "Inicio",
-      portfolio: "Portfolio",
+      portfolio: "Proyectos",
       services: "Servicios",
       contact: "Contacto",
     },
@@ -63,7 +63,7 @@ const translations = {
       after: ".",
     },
     actions: {
-      portfolio: "Ver portfolio",
+      portfolio: "Ver proyectos",
       contact: "Trabajemos juntos",
     },
     heroActionsLabel: "Acciones principales",
@@ -74,6 +74,7 @@ const translations = {
     servicesAccordionLabel: "Acordeón de servicios",
     portfolioTitle: "Últimos proyectos",
     projectLabels: [
+      "Branding",
       "Branding",
       "Branding / Ecommerce",
       "Diseño gráfico / Arquigrafía",
@@ -110,10 +111,14 @@ const translations = {
         tab: "Desarrollo web",
         title: "Diseño y desarrollo web",
         text:
-          "Diseñamos y desarrollamos sitios web de alto impacto, pensados para transmitir el valor de tu marca y convertir visitas en oportunidades.",
+          "Diseñamos y desarrollamos sitios web de alto impacto, desde landing pages express hasta tiendas online, pensados para transmitir el valor de tu marca y convertir visitas en oportunidades.",
       },
     ],
     packsButton: "Ver packs",
+    webActions: {
+      quote: "Quiero cotizar mi página web",
+      express: "Servicio de web Express",
+    },
     processLabel: "Proceso creativo",
     processCards: [
       "Gestionando comunidades de +150 mil seguidores.",
@@ -327,6 +332,7 @@ const translations = {
     portfolioTitle: "Latest projects",
     projectLabels: [
       "Branding",
+      "Branding",
       "Branding / Ecommerce",
       "Graphic design / Environmental graphics",
       "Packaging",
@@ -362,10 +368,14 @@ const translations = {
         tab: "Web development",
         title: "Web design and development",
         text:
-          "We design and develop high-impact websites that communicate your brand’s value and turn visits into opportunities.",
+          "We design and develop high-impact websites, from express landing pages to online stores, created to communicate your brand’s value and turn visits into opportunities.",
       },
     ],
     packsButton: "View packs",
+    webActions: {
+      quote: "Get a quote for my website",
+      express: "Express website service",
+    },
     processLabel: "Creative process",
     processCards: [
       "Managing communities of +150k followers.",
@@ -807,6 +817,12 @@ const setLanguage = (language) => {
     if (title) title.textContent = service.title;
     if (text) text.textContent = service.text;
     if (cta) cta.textContent = copy.packsButton;
+  });
+
+  document.querySelectorAll("[data-web-action]").forEach((action) => {
+    const actionText = copy.webActions[action.dataset.webAction];
+
+    if (actionText) action.textContent = actionText;
   });
 
   if (processCardsSection) {
