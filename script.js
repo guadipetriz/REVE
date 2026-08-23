@@ -76,6 +76,7 @@ const translations = {
     projectLabels: [
       "Branding",
       "Branding",
+      "Branding",
       "Branding / Ecommerce",
       "Diseño gráfico / Arquigrafía",
       "Packaging",
@@ -126,7 +127,7 @@ const translations = {
       "Trabajando para Buenos Aires, Costa Rica, España y Francia.",
       "Experiencia en retail, gastronomía y hotelería.",
     ],
-    contactTitle: "Don't be shy, give REVE a try!",
+    contactTitle: "Don't be shy, give RÊVE a try!",
     contactButton: "Escribinos",
     footerCredit: "Por Guadalupe Petriz",
     footerSocialLabel: "Redes sociales",
@@ -333,6 +334,7 @@ const translations = {
     projectLabels: [
       "Branding",
       "Branding",
+      "Branding",
       "Branding / Ecommerce",
       "Graphic design / Environmental graphics",
       "Packaging",
@@ -383,7 +385,7 @@ const translations = {
       "Working for Buenos Aires, Costa Rica, Spain and France.",
       "Experience in retail, gastronomy and hospitality.",
     ],
-    contactTitle: "Don't be shy, give REVE a try!",
+    contactTitle: "Don't be shy, give RÊVE a try!",
     contactButton: "Escribinos",
     footerCredit: "By Guadalupe Petriz",
     footerSocialLabel: "Social media",
@@ -801,9 +803,9 @@ const setLanguage = (language) => {
   });
 
   if (portfolioTitle) portfolioTitle.textContent = copy.portfolioTitle;
-  document.querySelectorAll(".project-card__content span").forEach((label, index) => {
-    label.textContent = copy.projectLabels[index % copy.projectLabels.length];
-  });
+  if (window.ProjectsShared) {
+    window.ProjectsShared.applyCarouselLabels(language);
+  }
 
   servicePanels.forEach((panel, index) => {
     const service = copy.services[index];
@@ -855,8 +857,9 @@ const setLanguage = (language) => {
   }
 };
 
-// Carrusel de portfolio con movimiento automatico y arrastre con cursor.
-if (portfolioCarousel && portfolioTrack) {
+const initPortfolioCarousel = () => {
+  if (!portfolioCarousel || !portfolioTrack) return;
+
   let carouselOffset = 0;
   let carouselLoopWidth = 0;
   let isCarouselDragging = false;
@@ -952,7 +955,17 @@ if (portfolioCarousel && portfolioTrack) {
     measureCarousel();
     renderCarousel();
   });
-}
+};
+
+const bootstrapPortfolioSection = async () => {
+  if (!portfolioTrack || !window.ProjectsShared) return;
+
+  await window.ProjectsShared.renderPortfolioCarousel(
+    portfolioTrack,
+    currentLanguage
+  );
+  initPortfolioCarousel();
+};
 
 // Mantiene el año del footer actualizado automáticamente.
 if (yearElement) {
@@ -1170,7 +1183,9 @@ if (packagesModal && openPackagesButtons.length) {
   });
 }
 
-setLanguage("es");
+bootstrapPortfolioSection().finally(() => {
+  setLanguage("es");
+});
 
 if (cursorDot) {
   let cursorX = window.innerWidth / 2;

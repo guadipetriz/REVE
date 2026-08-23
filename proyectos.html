@@ -39,42 +39,44 @@
         <button class="project-filter" type="button" data-filter="otros" aria-pressed="false">Otros</button>
       </div>
 
-      <section class="projects-grid" aria-live="polite" aria-label="Listado de proyectos">
-        <article class="grid-project" data-category="branding packaging" tabindex="0">
-          <div class="grid-project__image"><img src="assets/services/branding/branding-07.jpg" alt="Identidad visual de Olen Aroa" /></div>
-          <div class="grid-project__content"><p>Branding / Packaging</p><h2>Olen Aroa</h2></div>
-        </article>
-        <article class="grid-project" data-category="branding" tabindex="0">
-          <div class="grid-project__image"><img src="assets/portfolio-jpg/dos-orillas.jpg" alt="Identidad visual de Dos Orillas" /></div>
-          <div class="grid-project__content"><p>Branding</p><h2>Dos Orillas</h2></div>
-        </article>
-        <article class="grid-project" data-category="branding" tabindex="0">
-          <div class="grid-project__image"><img src="assets/portfolio-jpg/valentina.jpg" alt="Identidad visual y ecommerce de Valentina" /></div>
-          <div class="grid-project__content"><p>Branding</p><h2>Valentina</h2></div>
-        </article>
-        <article class="grid-project" data-category="packaging" tabindex="0">
-          <div class="grid-project__image"><img src="assets/portfolio-jpg/dulces-serra.jpg" alt="Diseño de packaging para Dulces Serra" /></div>
-          <div class="grid-project__content"><p>Packaging</p><h2>Dulces Serra</h2></div>
-        </article>
-        <article class="grid-project" data-category="web" tabindex="0">
-          <div class="grid-project__image"><img src="assets/portfolio-jpg/wabro.jpg" alt="Diseño de tienda online para Wabro" /></div>
-          <div class="grid-project__content"><p>Diseño web</p><h2>Wabro</h2></div>
-        </article>
-        <article class="grid-project" data-category="otros" tabindex="0">
-          <div class="grid-project__image"><img src="assets/portfolio-jpg/checkpoint-charlie.jpg" alt="Diseño gráfico y arquigrafía para Checkpoint Charlie" /></div>
-          <div class="grid-project__content"><p>Arquigrafía</p><h2>Checkpoint Charlie</h2></div>
-        </article>
-        <article class="grid-project" data-category="otros" tabindex="0">
-          <div class="grid-project__image"><img src="assets/portfolio-jpg/muvon.jpg" alt="Contenido para paid media de Muvon" /></div>
-          <div class="grid-project__content"><p>Diseño gráfico</p><h2>Muvon</h2></div>
-        </article>
-      </section>
+      <section class="projects-grid" aria-live="polite" aria-label="Listado de proyectos"></section>
     </main>
 
+    <section class="contact" id="contacto" aria-labelledby="contact-title">
+      <div class="contact__brand">
+        <img src="assets/LOGO-naranja.svg" alt="Guada Studio" />
+      </div>
+      <div class="contact__cta">
+        <h2 id="contact-title" data-contact-title>Don't be shy, give RÊVE a try!</h2>
+        <a class="button button--primary contact-gooey-button" href="mailto:hola.revestudio@gmail.com">
+          <span class="contact-gooey-button__blobs" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span class="contact-gooey-button__label">Escribinos</span>
+        </a>
+      </div>
+    </section>
+
     <footer class="footer">
-      <p>Por Guadalupe Petriz | <span id="current-year"></span></p>
-      <a href="https://www.instagram.com/by_revestudio/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <p><span data-footer-credit>Por Guadalupe Petriz</span> | <span id="current-year"></span></p>
+      <ul aria-label="Redes sociales">
+        <li>
+          <a
+            href="https://www.instagram.com/by_revestudio/"
+            aria-label="Instagram de REVE Studio"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram
+          </a>
+        </li>
+      </ul>
     </footer>
+    <script src="projects-data.js"></script>
+    <script src="projects-shared.js"></script>
     <script src="projects.js"></script>
   </body>
 </html>

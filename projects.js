@@ -1,25 +1,75 @@
-const filters = document.querySelectorAll("[data-filter]");
-const projects = document.querySelectorAll("[data-category]");
 const year = document.querySelector("#current-year");
+const projectsGrid = document.querySelector(".projects-grid");
+const filters = document.querySelectorAll("[data-filter]");
+const contactSection = document.querySelector(".contact");
+const contactLogo = document.querySelector(".contact__brand img");
+
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
 if (year) year.textContent = new Date().getFullYear();
 
-filters.forEach((filter) => {
-  filter.addEventListener("click", () => {
-    const category = filter.dataset.filter;
+const updateContactLogo = () => {
+  if (!contactSection || !contactLogo) return;
 
-    filters.forEach((button) => {
-      const active = button === filter;
-      button.classList.toggle("is-active", active);
-      button.setAttribute("aria-pressed", String(active));
-    });
+  const contactRect = contactSection.getBoundingClientRect();
+  const revealStart = window.innerHeight * 1.05;
+  const revealEnd = window.innerHeight * 0.75;
+  const progress = clamp(
+    (revealStart - contactRect.top) / (revealStart - revealEnd),
+    0,
+    1
+  );
+  const stretch = 2 - progress;
 
-    projects.forEach((project) => {
-      const categories = project.dataset.category.split(" ");
-      project.hidden = category !== "all" && !categories.includes(category);
+  contactLogo.style.setProperty("--contact-logo-stretch", stretch);
+};
+
+let contactLogoFrame = null;
+
+const requestContactLogoUpdate = () => {
+  if (contactLogoFrame) return;
+
+  contactLogoFrame = window.requestAnimationFrame(() => {
+    updateContactLogo();
+    contactLogoFrame = null;
+  });
+};
+
+updateContactLogo();
+window.addEventListener("scroll", requestContactLogoUpdate, { passive: true });
+window.addEventListener("resize", requestContactLogoUpdate);
+
+const bindProjectFilters = () => {
+  const projects = document.querySelectorAll(".grid-project[data-category]");
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", () => {
+      const category = filter.dataset.filter;
+
+      filters.forEach((button) => {
+        const active = button === filter;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+
+      projects.forEach((project) => {
+        const categories = project.dataset.category.split(" ");
+        project.hidden = category !== "all" && !categories.includes(category);
+      });
     });
   });
-});
+};
+
+const initProjectsPage = async () => {
+  if (projectsGrid && window.ProjectsShared) {
+    await window.ProjectsShared.renderProjectsGrid(projectsGrid);
+    window.ProjectsShared.initProjectHoverSlideshow();
+  }
+
+  bindProjectFilters();
+};
+
+initProjectsPage();
 
 const navToggle = document.querySelector(".nav-toggle");
 const navMenu = document.querySelector("#site-menu");
