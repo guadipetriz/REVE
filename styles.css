@@ -189,6 +189,7 @@ a {
   background-color: var(--page-bg);
   color: #161616;
   transition: var(--page-transition);
+  overflow: hidden;
 }
 
 .hero__content {

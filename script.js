@@ -1183,9 +1183,12 @@ if (packagesModal && openPackagesButtons.length) {
   });
 }
 
-bootstrapPortfolioSection().finally(() => {
-  setLanguage("es");
-});
+const bootstrapApp = () =>
+  bootstrapPortfolioSection().finally(() => {
+    setLanguage("es");
+  });
+
+bootstrapApp();
 
 if (cursorDot) {
   let cursorX = window.innerWidth / 2;

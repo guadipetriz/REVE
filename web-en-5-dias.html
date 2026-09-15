@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Diseño y desarrollo de una web personalizada, responsive y lista para publicar en solo 5 días."
+    />
+    <meta property="og:title" content="Tu web lista en 5 días | RÊVE Studio" />
+    <meta
+      property="og:description"
+      content="Una web profesional, personalizada y sin vueltas por USD 400."
+    />
+    <meta property="og:type" content="website" />
+    <title>Tu web lista en 5 días | RÊVE Studio</title>
+    <link rel="icon" href="assets/FavIcon.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,200..800&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #f8f5ef;
+        --white: #fff;
+        --ink: #161616;
+        --wine: #530a05;
+        --orange: #f4310f;
+        --line: rgba(22, 22, 22, 0.15);
+        --serif: "Instrument Serif", Georgia, serif;
+        --sans: "Bricolage Grotesque", Arial, sans-serif;
+        --container: min(1180px, calc(100% - 40px));
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 18px;
+        line-height: 1.45;
+      }
+      body.menu-open { overflow: hidden; }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; text-decoration: none; }
+      button, input, textarea { font: inherit; }
+      :focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+      .nav {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 20;
+        border-bottom: 1px solid rgba(255,255,255,.18);
+        background: rgba(83, 10, 5, .92);
+        backdrop-filter: blur(16px);
+        color: var(--cream);
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: opacity .6s ease, transform .7s cubic-bezier(.2,.8,.2,1);
+      }
+      body.is-ready .nav { opacity: 1; transform: translateY(0); }
+      .nav__inner {
+        width: var(--container);
+        min-height: 76px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo img { width: 58px; height: 58px; }
+      .nav__links {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .nav__links a {
+        display: inline-flex;
+        min-height: 42px;
+        align-items: center;
+        padding: 0 16px;
+        border-radius: 99px;
+        font-family: var(--sans);
+        font-size: .78rem;
+        font-weight: 430;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      .nav__links a:hover { background: rgba(255,255,255,.12); }
+      .nav__links .nav__cta {
+        background: var(--orange);
+        color: var(--wine);
+      }
+      .nav__links .nav__cta:hover {
+        background: var(--cream);
+        color: var(--wine);
+      }
+      .nav__toggle {
+        display: none;
+        width: 46px;
+        height: 46px;
+        border: 1px solid rgba(255,255,255,.3);
+        border-radius: 50%;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+      }
+      .nav__toggle span {
+        display: block;
+        width: 19px;
+        height: 1.5px;
+        margin: 5px auto;
+        border-radius: 99px;
+        background: currentColor;
+        transition: transform 220ms ease, opacity 180ms ease;
+      }
+      .menu-open .nav__toggle span:first-child { transform: translateY(3.25px) rotate(45deg); }
+      .menu-open .nav__toggle span:last-child { transform: translateY(-3.25px) rotate(-45deg); }
+
+      .hero {
+        position: relative;
+        isolation: isolate;
+        min-height: 100svh;
+        padding: 140px max(20px, calc((100% - 1180px) / 2)) 70px;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: var(--wine);
+        color: var(--cream);
+        text-align: center;
+      }
+      .hero__content {
+        position: relative;
+        z-index: 2;
+        width: min(980px, 100%);
+        pointer-events: none;
+      }
+      .hero__copy-glass {
+        position: relative;
+        isolation: isolate;
+        width: min(900px, 100%);
+        margin-inline: auto;
+      }
+      .hero__copy-glass::before {
+        content: "";
+        position: absolute;
+        inset: -220px -280px;
+        z-index: 0;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(83,10,5,1) 0%,
+          rgba(83,10,5,.98) 28%,
+          rgba(83,10,5,.84) 43%,
+          rgba(83,10,5,.42) 57%,
+          rgba(83,10,5,.12) 68%,
+          rgba(83,10,5,0) 78%
+        );
+        pointer-events: none;
+      }
+      .hero__copy-glass > * {
+        position: relative;
+        z-index: 1;
+      }
+      .hero__actions,
+      .hero__actions a { pointer-events: auto; }
+      .hero-image-sphere {
+        position: absolute;
+        inset: 76px 0 0;
+        z-index: 1;
+        overflow: hidden;
+        touch-action: none;
+        cursor: grab;
+      }
+      .hero-image-sphere.is-dragging { cursor: grabbing; }
+      .hero-image-sphere canvas { outline: none; }
+      .dom-sphere {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        perspective: 900px;
+        pointer-events: none;
+      }
+      .dom-sphere__image {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: clamp(150px, 19vw, 275px);
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        opacity: 0;
+        box-shadow: 0 20px 55px rgba(0,0,0,.25);
+        transform-origin: center;
+        will-change: transform, opacity;
+        transition: filter 220ms ease;
+        -webkit-user-drag: none;
+        user-select: none;
+      }
+      .hero-image-sphere__hint {
+        position: absolute;
+        right: 22px;
+        bottom: 18px;
+        z-index: 2;
+        margin: 0;
+        color: rgba(248,245,239,.52);
+        font-family: var(--sans);
+        font-size: .68rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+      .hero__content > * {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      body.is-ready .hero__content > * {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity .75s ease, transform .8s cubic-bezier(.2,.8,.2,1);
+      }
+      body.is-ready .hero__content > :nth-child(1) { transition-delay: .16s; }
+      body.is-ready .hero__content > :nth-child(2) { transition-delay: .25s; }
+      body.is-ready .hero__content > :nth-child(3) { transition-delay: .36s; }
+      body.is-ready .hero__content > :nth-child(4) { transition-delay: .47s; }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        min-height: 38px;
+        padding: 0 14px;
+        border: 1px solid currentColor;
+        border-radius: 99px;
+        font-family: var(--sans);
+        font-size: .75rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      .pill::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--orange);
+        box-shadow: 0 0 0 5px rgba(244,49,15,.16);
+      }
+      h1, h2, h3, p { overflow-wrap: anywhere; }
+      h1 {
+        margin: 30px 0 24px;
+        font-family: var(--sans);
+        font-size: clamp(4rem, 10.5vw, 9.5rem);
+        font-weight: 280;
+        letter-spacing: 0;
+        line-height: .78;
+      }
+      .hero__lead {
+        max-width: 680px;
+        margin: 0 auto;
+        color: rgba(248,245,239,.82);
+        font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+        line-height: 1.2;
+      }
+      .hero__actions {
+        margin-top: 26px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .button {
+        display: inline-flex;
+        min-height: 56px;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        border: 1px solid transparent;
+        border-radius: 99px;
+        padding: 0 26px;
+        font-family: var(--sans);
+        font-size: 1rem;
+        transition: transform .2s ease, background .2s ease;
+      }
+      .button:hover { transform: translateY(-3px); }
+      .button--orange { background: var(--orange); color: var(--wine); }
+      .button--ghost { border-color: rgba(255,255,255,.35); color: var(--cream); }
+      section { scroll-margin-top: 75px; }
+      .section { padding: clamp(80px, 11vw, 140px) 0; }
+      .wrap { width: var(--container); margin: auto; }
+      .section__head {
+        display: grid;
+        grid-template-columns: .65fr 1.35fr;
+        gap: 30px;
+        margin-bottom: clamp(45px, 7vw, 76px);
+      }
+      .eyebrow {
+        margin: 5px 0 0;
+        color: var(--wine);
+        font-family: var(--sans);
+        font-size: .78rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      h2 {
+        max-width: 850px;
+        margin: 0;
+        font-size: clamp(3rem, 6.6vw, 6.6rem);
+        font-weight: 400;
+        letter-spacing: -.045em;
+        line-height: .86;
+      }
+      h2 em { color: var(--orange); font-weight: 400; }
+
+      #incluye .section__head,
+      #proceso .section__head,
+      #precio .section__head {
+        display: block;
+        text-align: center;
+      }
+      #incluye .section__head .eyebrow,
+      #proceso .section__head .eyebrow,
+      #precio .section__head .eyebrow { margin-bottom: 18px; }
+      #incluye .section__head h2,
+      #proceso .section__head h2,
+      #precio .section__head h2 {
+        margin-inline: auto;
+        font-family: var(--sans);
+        font-weight: 400;
+      }
+      #incluye .section__head h2 em,
+      #proceso .section__head h2 em,
+      #precio .section__head h2 em { font-style: normal; }
+
+      .include-accordion {
+        width: min(900px, calc(100% - 80px));
+        margin-inline: auto;
+        border-top: 1px solid var(--line);
+      }
+      .include-item {
+        border-bottom: 1px solid var(--line);
+        color: #aaa;
+        transition: color 300ms ease;
+      }
+      .include-item.is-open { color: var(--ink); }
+      .include-item__trigger {
+        width: 100%;
+        display: grid;
+        grid-template-columns: clamp(54px, 7vw, 88px) minmax(0, 1fr) 44px;
+        gap: 18px;
+        align-items: center;
+        border: 0;
+        padding: 17px 0;
+        background: transparent;
+        color: inherit;
+        text-align: left;
+        cursor: pointer;
+        transition: padding 300ms ease;
+      }
+      .include-item.is-open .include-item__trigger {
+        padding-top: 26px;
+        padding-bottom: 14px;
+      }
+      .include-item__number {
+        color: var(--orange);
+        font-family: var(--sans);
+        font-size: clamp(1.45rem, 3vw, 2.7rem);
+        font-weight: 250;
+        letter-spacing: 0;
+        line-height: 1;
+      }
+      .include-item__title {
+        margin: 0;
+        font-family: var(--sans);
+        font-size: clamp(.92rem, 1.55vw, 1.35rem);
+        font-weight: 430;
+        line-height: 1;
+        text-transform: uppercase;
+        transition: font-weight 300ms ease, color 300ms ease;
+      }
+      .include-item.is-open .include-item__title { font-weight: 750; }
+      .include-item__arrow {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        justify-self: end;
+        border-radius: 50%;
+        background: var(--ink);
+        color: var(--white);
+        font-family: var(--sans);
+        font-size: 1.05rem;
+        transition: transform 300ms ease, background-color 300ms ease;
+      }
+      .include-item.is-open .include-item__arrow {
+        transform: rotate(90deg);
+        background: var(--wine);
+      }
+      .include-item__panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 320ms ease-in-out;
+      }
+      .include-item.is-open .include-item__panel { grid-template-rows: 1fr; }
+      .include-item__panel-inner { overflow: hidden; }
+      .include-item__content {
+        display: grid;
+        grid-template-columns: clamp(54px, 7vw, 88px) minmax(0, 1fr) 44px;
+        gap: 18px;
+        align-items: center;
+        padding: 0 0 27px;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 220ms ease, transform 300ms ease;
+      }
+      .include-item.is-open .include-item__content {
+        opacity: 1;
+        transform: none;
+        transition-delay: 90ms;
+      }
+      .include-item__description {
+        grid-column: 2;
+        max-width: 590px;
+        margin: 0;
+        color: #777;
+        font-family: var(--sans);
+        font-size: clamp(.9rem, 1.25vw, 1.02rem);
+        font-weight: 400;
+        line-height: 1.35;
+      }
+      .process { background: var(--ink); color: var(--cream); }
+      .process .eyebrow { color: var(--orange); }
+      .process-list {
+        position: relative;
+        width: min(900px, calc(100% - 80px));
+        margin-inline: auto;
+        counter-reset: process;
+      }
+      .process-list::before {
+        content: "";
+        position: absolute;
+        top: 16px;
+        bottom: 16px;
+        left: 24px;
+        width: 1px;
+        background: linear-gradient(var(--orange), rgba(244,49,15,.15));
+      }
+      .process-step {
+        counter-increment: process;
+        position: relative;
+        display: block;
+        margin-left: 72px;
+        padding: 0 0 62px;
+      }
+      .process-step:last-child { padding-bottom: 0; }
+      .process-step::before {
+        content: "0" counter(process);
+        position: absolute;
+        top: 0;
+        left: -72px;
+        z-index: 1;
+        width: 49px;
+        height: 49px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(244,49,15,.7);
+        border-radius: 50%;
+        background: var(--ink);
+        color: var(--orange);
+        font-family: var(--sans);
+        font-size: .72rem;
+      }
+      .process-step h3 {
+        margin: 0;
+        font-family: var(--sans);
+        font-size: clamp(1.35rem, 2.4vw, 2.2rem);
+        font-weight: 550;
+        line-height: 1;
+      }
+      .process-step p {
+        max-width: 720px;
+        margin: 16px 0 0;
+        color: rgba(248,245,239,.66);
+        font-family: var(--sans);
+        font-size: clamp(.98rem, 1.4vw, 1.1rem);
+        font-weight: 350;
+        line-height: 1.5;
+      }
+
+      .price-layout {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(22px, 3vw, 42px);
+        align-items: start;
+        padding: 24px 0 42px;
+      }
+      #precio {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        padding-bottom: clamp(48px, 6vw, 76px);
+        font-family: var(--sans);
+        background:
+          radial-gradient(circle at 88% 48%, rgba(244,49,15,.2), transparent 25%),
+          radial-gradient(circle at 75% 78%, rgba(83,10,5,.12), transparent 24%),
+          var(--cream);
+      }
+      .price-card {
+        position: relative;
+        padding: clamp(27px, 3vw, 38px);
+        border: 1px solid rgba(255,255,255,.56);
+        border-radius: 34px 24px 38px 28px;
+        background: linear-gradient(145deg, rgba(255,255,255,.5), rgba(255,255,255,.16));
+        color: var(--wine);
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.8),
+          0 28px 70px rgba(83,10,5,.18);
+        backdrop-filter: blur(24px) saturate(1.35);
+        -webkit-backdrop-filter: blur(24px) saturate(1.35);
+      }
+      .price-layout > * {
+        width: 100%;
+        height: 490px;
+        transform-origin: center;
+        will-change: transform;
+      }
+      .price-layout > .details {
+        padding: clamp(25px, 2.7vw, 35px);
+        border: 1px solid rgba(83,10,5,.12);
+        background: rgba(255,255,255,.72);
+        box-shadow: 0 22px 55px rgba(83,10,5,.08);
+      }
+      .price-layout > .details:first-child {
+        border-radius: 26px 40px 28px 36px;
+      }
+      .price-layout > .details:nth-child(2) {
+        margin-top: 34px;
+        border-radius: 42px 26px 36px 24px;
+        background: #eee9e0;
+      }
+      .price-layout > .price-card { margin-top: 8px; }
+      .price-layout > .details.is-visible:first-child {
+        animation: organic-card-one 5.2s ease-in-out infinite;
+      }
+      .price-layout > .details.is-visible:nth-child(2) {
+        animation: organic-card-two 5.8s ease-in-out .25s infinite;
+      }
+      .price-layout > .price-card.is-visible {
+        animation: organic-card-three 5.5s ease-in-out .5s infinite;
+      }
+      .price-layout > *:hover {
+        animation-play-state: paused !important;
+        z-index: 2;
+      }
+      @keyframes organic-card-one {
+        0%, 100% { transform: rotate(-2.2deg) translateY(0); }
+        50% { transform: rotate(-.7deg) translateY(-10px); }
+      }
+      @keyframes organic-card-two {
+        0%, 100% { transform: rotate(2.4deg) translateY(0); }
+        50% { transform: rotate(.8deg) translateY(-13px); }
+      }
+      @keyframes organic-card-three {
+        0%, 100% { transform: rotate(-1.4deg) translateY(0); }
+        50% { transform: rotate(1deg) translateY(-11px); }
+      }
+      .price-card__label { margin: 0; font-family: var(--sans); text-transform: uppercase; }
+      .price-card__amount {
+        margin: 18px 0 3px;
+        font-family: var(--sans);
+        font-size: clamp(3.6rem, 6vw, 6.4rem);
+        font-weight: 300;
+        letter-spacing: -.07em;
+        line-height: .8;
+      }
+      .price-card__amount small { font-size: .25em; letter-spacing: 0; }
+      .price-card__copy { margin: 18px 0 24px; font-size: 1.15rem; line-height: 1.25; }
+      .price-card__payments {
+        margin: 0 0 28px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(83,10,5,.22);
+      }
+      .price-card__payments p {
+        margin: 0;
+        font-family: var(--sans);
+        font-size: .95rem;
+        line-height: 1.4;
+      }
+      .price-card__payments p + p { margin-top: 5px; }
+      .price-card .button { width: 100%; background: var(--wine); color: var(--cream); }
+      .details h3 {
+        margin: 0 0 16px;
+        font-family: var(--sans);
+        font-size: clamp(1.4rem, 2.2vw, 2rem);
+        font-weight: 330;
+      }
+      .check-list { margin: 0 0 48px; padding: 0; list-style: none; }
+      #precio .check-list { margin-bottom: 0; }
+      .check-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 10px;
+        padding: 11px 0;
+        border-bottom: 1px solid var(--line);
+        font-family: var(--sans);
+        font-size: .96rem;
+        line-height: 1.3;
+      }
+      .check-list li > .bi { color: var(--orange); }
+      .check-list--excluded li > .bi { color: #999; }
+
+      @media (max-width: 1000px) and (min-width: 821px) {
+        .price-layout { grid-template-columns: 1fr 1fr; }
+        .price-card {
+          position: static;
+          grid-column: 1 / -1;
+          width: min(440px, 100%);
+          justify-self: center;
+        }
+      }
+
+      .faq-list {
+        width: min(900px, 100%);
+        margin-inline: auto;
+      }
+      #faq .section__head {
+        display: block;
+        text-align: center;
+      }
+      #faq .section__head h2 {
+        margin-inline: auto;
+        font-family: var(--sans);
+        font-size: clamp(2.6rem, 4.8vw, 4.6rem);
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 1;
+      }
+      details {
+        border-top: 1px solid var(--line);
+        overflow: hidden;
+      }
+      details:last-child { border-bottom: 1px solid var(--line); }
+      summary {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 26px 0;
+        cursor: pointer;
+        font-family: var(--sans);
+        font-size: clamp(1.3rem, 2.5vw, 2rem);
+        font-weight: 330;
+        list-style: none;
+      }
+      summary::-webkit-details-marker { display: none; }
+      summary::after {
+        content: "+";
+        color: var(--orange);
+        transition: transform 300ms ease;
+      }
+      details[open] summary::after { transform: rotate(45deg); }
+      details.is-closing summary::after { transform: rotate(0); }
+      details p {
+        max-width: 700px;
+        margin: -5px 0 28px;
+        color: #555;
+        font-size: clamp(1.08rem, 1.5vw, 1.2rem);
+        line-height: 1.55;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 260ms ease, transform 320ms ease;
+      }
+      details[open] p {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      details.is-opening p,
+      details.is-closing p {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      .contact {
+        padding-top: clamp(44px, 5vw, 68px);
+        padding-bottom: clamp(44px, 5vw, 68px);
+        background: var(--orange);
+        color: var(--wine);
+      }
+      .contact-layout {
+        display: grid;
+        justify-items: center;
+        gap: 32px;
+        text-align: center;
+      }
+      .contact-layout h2 {
+        max-width: 950px;
+        margin: 0;
+        font-family: var(--sans);
+        font-size: clamp(2.6rem, 6vw, 5.8rem);
+        font-weight: 280;
+        letter-spacing: 0;
+        line-height: .95;
+      }
+      .contact__copy { max-width: 500px; font-size: 1.25rem; }
+      .contact .button {
+        min-width: 190px;
+        background: var(--wine);
+        color: var(--cream);
+      }
+      .form { display: grid; gap: 18px; }
+      .field { display: grid; gap: 7px; }
+      .field label { font-family: var(--sans); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+      .field input, .field textarea {
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid rgba(83,10,5,.45);
+        border-radius: 0;
+        padding: 14px 0;
+        background: transparent;
+        color: var(--wine);
+        outline: none;
+      }
+      .field input:focus, .field textarea:focus { border-color: var(--wine); }
+      .field textarea { min-height: 110px; resize: vertical; }
+      .form .button { border: 0; background: var(--wine); color: var(--cream); cursor: pointer; }
+      .form__note { margin: 0; font-size: .9rem; opacity: .72; }
+
+      footer {
+        min-height: clamp(210px, 27vw, 300px);
+        padding: clamp(52px, 6vw, 72px) 0;
+        background: var(--wine);
+        color: rgba(248,245,239,.7);
+      }
+      .footer-inner {
+        width: var(--container);
+        min-height: 100%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        gap: 0;
+      }
+      .footer-logo {
+        width: clamp(230px, 31vw, 390px);
+        height: auto;
+        display: block;
+        overflow: visible;
+        touch-action: none;
+        user-select: none;
+      }
+      .footer-logo .logo-shape {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 1.8;
+        vector-effect: non-scaling-stroke;
+      }
+      .vector-rig { pointer-events: none; }
+      .vector-anchor-hit {
+        fill: transparent;
+        pointer-events: all;
+        cursor: grab;
+      }
+      .vector-anchor {
+        fill: #fff;
+        stroke: #9bc5ff;
+        stroke-width: 1.5;
+        vector-effect: non-scaling-stroke;
+        pointer-events: none;
+      }
+      .vector-anchor-hit:active { cursor: grabbing; }
+      .vector-arm {
+        stroke: #9bc5ff;
+        stroke-width: 1;
+        vector-effect: non-scaling-stroke;
+      }
+      .vector-handle {
+        fill: #fff;
+        stroke: #9bc5ff;
+        stroke-width: 1.2;
+        vector-effect: non-scaling-stroke;
+        pointer-events: none;
+      }
+      .figma-frame {
+        --figma-blue: #9bc5ff;
+        position: relative;
+        display: inline-block;
+        padding: clamp(8px, 1vw, 13px);
+      }
+      .figma-frame__border {
+        position: absolute;
+        inset: 0;
+        border: 1px solid var(--figma-blue);
+        pointer-events: none;
+        transform-origin: top left;
+        transform: scale(0);
+      }
+      .figma-frame.is-visible .figma-frame__border {
+        animation: figma-frame-open .7s cubic-bezier(.16,1,.3,1) forwards;
+      }
+      .figma-frame__handle {
+        position: absolute;
+        z-index: 2;
+        width: 9px;
+        height: 9px;
+        border: 1px solid var(--figma-blue);
+        border-radius: 1px;
+        background: #fff;
+        opacity: 0;
+        transform: scale(.2);
+      }
+      .figma-frame__handle:nth-of-type(1) { top: -4px; left: -4px; --handle-delay: .2s; }
+      .figma-frame__handle:nth-of-type(2) { top: -4px; right: -4px; --handle-delay: .3s; }
+      .figma-frame__handle:nth-of-type(3) { right: -4px; bottom: -4px; --handle-delay: .4s; }
+      .figma-frame__handle:nth-of-type(4) { bottom: -4px; left: -4px; --handle-delay: .5s; }
+      .figma-frame.is-visible .figma-frame__handle {
+        animation: figma-handle-pop .28s ease-out var(--handle-delay) forwards;
+      }
+      .figma-frame__badge {
+        position: absolute;
+        left: 50%;
+        bottom: -32px;
+        z-index: 3;
+        border-radius: 4px;
+        padding: 3px 8px;
+        background: var(--figma-blue);
+        color: #fff;
+        font-family: var(--sans);
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.2;
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateX(-50%) translateY(-5px);
+      }
+      .figma-frame.is-visible .figma-frame__badge {
+        animation: figma-badge-in .3s ease-out .28s forwards;
+      }
+      .footer-hint {
+        margin: 42px 0 0;
+        transform: translateY(12px);
+        font-family: var(--sans);
+        font-size: 10px;
+        letter-spacing: .08em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+      @keyframes figma-frame-open {
+        0% { transform: scale(0); opacity: 0; }
+        55% { transform: scaleX(1) scaleY(.04); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      @keyframes figma-handle-pop {
+        0% { opacity: 0; transform: scale(.2); }
+        70% { opacity: 1; transform: scale(1.25); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes figma-badge-in {
+        to { opacity: 1; transform: translateX(-50%) translateY(0); }
+      }
+      .whatsapp-float {
+        position: fixed;
+        right: clamp(18px, 2.5vw, 34px);
+        bottom: clamp(18px, 2.5vw, 34px);
+        z-index: 60;
+        width: 62px;
+        height: 62px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255,255,255,.32);
+        border-radius: 50%;
+        background: var(--orange);
+        color: var(--wine);
+        box-shadow: 0 16px 38px rgba(22,22,22,.24);
+        transition: transform 200ms ease, box-shadow 200ms ease;
+      }
+      .whatsapp-float::before {
+        content: "";
+        position: absolute;
+        inset: -7px;
+        border: 1px solid rgba(244,49,15,.4);
+        border-radius: inherit;
+        animation: whatsapp-pulse 2.4s ease-out infinite;
+      }
+      .whatsapp-float:hover,
+      .whatsapp-float:focus-visible {
+        transform: translateY(-4px) scale(1.04);
+        box-shadow: 0 22px 48px rgba(22,22,22,.3);
+      }
+      .whatsapp-float .bi {
+        font-size: 27px;
+        line-height: 1;
+      }
+      @keyframes whatsapp-pulse {
+        0%, 35% { opacity: .7; transform: scale(.86); }
+        80%, 100% { opacity: 0; transform: scale(1.2); }
+      }
+
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+      .reveal.is-visible { opacity: 1; transform: none; }
+
+      @media (max-width: 820px) {
+        .nav__toggle { display: block; }
+        .nav__links {
+          position: fixed;
+          inset: 76px 0 auto;
+          height: calc(100svh - 76px);
+          padding: 36px 20px;
+          display: none;
+          align-content: start;
+          background: var(--wine);
+        }
+        .menu-open .nav__links { display: grid; }
+        .nav__links a {
+          min-height: 50px;
+          font-size: 1.12rem;
+          font-weight: 400;
+          letter-spacing: .05em;
+        }
+        .hero {
+          min-height: 78svh;
+          padding: 108px 20px 42px;
+        }
+        .hero-image-sphere {
+          inset: 76px 0 0;
+          overflow: hidden;
+        }
+        .hero__copy-glass::before {
+          inset: -150px -120px;
+        }
+        h1 { font-size: clamp(3.9rem, 18vw, 7rem); }
+        .dom-sphere__image { width: clamp(118px, 38vw, 180px); }
+        .hero-image-sphere__hint { display: none; }
+        .hero__actions {
+          width: min(100%, 330px);
+          margin-inline: auto;
+        }
+        .hero__actions .button { width: 100%; }
+        .section__head, .price-layout, .contact-layout { grid-template-columns: 1fr; }
+        .include-item__trigger {
+          grid-template-columns: 56px minmax(0, 1fr) 46px;
+          gap: 12px;
+        }
+        .include-item__arrow { width: 40px; height: 40px; }
+        .include-item__content {
+          grid-template-columns: 56px minmax(0, 1fr);
+          gap: 12px;
+          padding-bottom: 30px;
+        }
+        .include-item__description { grid-column: 2; }
+        .include-accordion,
+        .process-list { width: 100%; }
+        .process-list::before { left: 20px; }
+        .process-step { margin-left: 58px; padding-bottom: 48px; }
+        .process-step::before {
+          left: -58px;
+          width: 41px;
+          height: 41px;
+        }
+        .price-card { position: static; }
+        .price-layout > * {
+          height: auto;
+          margin-top: 0 !important;
+          animation: none !important;
+          transform: none !important;
+        }
+        #faq { padding-top: 48px; }
+        footer { min-height: 270px; }
+        .footer-inner {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          gap: 54px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        .reveal { opacity: 1; transform: none; }
+        .hero__content > *,
+        .nav { opacity: 1; transform: none; }
+        .hero-image-sphere__hint { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav">
+      <nav class="nav__inner" aria-label="Navegación principal">
+        <a class="logo" href="#inicio" aria-label="RÊVE Studio, ir al inicio">
+          <img src="assets/LOGO-naranja.svg" alt="" />
+        </a>
+        <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="#incluye">Qué incluye</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="https://revestudio.com.ar/">Otros servicios</a></li>
+          <li>
+            <a
+              class="nav__cta"
+              href="https://wa.me/5491154749450?text=Hola%20R%C3%8AVE%20Studio%2C%20quiero%20consultar%20por%20mi%20web%20en%205%20d%C3%ADas."
+              target="_blank"
+              rel="noopener noreferrer"
+            >Quiero mi web</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-image-sphere" data-image-sphere aria-hidden="true">
+          <div class="dom-sphere" data-dom-sphere>
+            <img class="dom-sphere__image" src="assets/hero-images/hero-01.jpg" alt="" />
+            <img class="dom-sphere__image" src="assets/hero-images/hero-02.jpg" alt="" />
+            <img class="dom-sphere__image" src="assets/hero-images/hero-03.jpg" alt="" />
+            <img class="dom-sphere__image" src="assets/hero-images/hero-04.jpg" alt="" />
+            <img class="dom-sphere__image" src="assets/hero-images/hero-05.jpg" alt="" />
+            <img class="dom-sphere__image" src="assets/hero-images/hero-06.jpg" alt="" />
+          </div>
+          <p class="hero-image-sphere__hint">Arrastrá para explorar</p>
+        </div>
+        <div class="hero__content">
+          <div class="hero__copy-glass">
+            <span class="pill">Agenda abierta</span>
+            <h1 id="hero-title">Tu web lista en 5 días</h1>
+            <p class="hero__lead">
+              Para emprendedores y negocios que necesitan una presencia online profesional,
+              personalizada y lista para salir — rápido y sin vueltas.
+            </p>
+          </div>
+          <div class="hero__actions">
+            <a class="button button--orange" href="#contacto">Quiero mi web <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="button button--ghost" href="#incluye">Ver qué incluye</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="incluye" aria-labelledby="include-title">
+        <div class="wrap">
+          <div class="section__head reveal">
+            <p class="eyebrow">Qué incluye</p>
+            <h2 id="include-title">Todo lo necesario para salir <em>online.</em></h2>
+          </div>
+          <div class="include-accordion reveal" data-include-accordion>
+            <article class="include-item is-open">
+              <button class="include-item__trigger" type="button" aria-expanded="true" aria-controls="include-panel-1">
+                <span class="include-item__number">01</span>
+                <span class="include-item__title">Diseño 100% personalizado</span>
+                <span class="include-item__arrow" aria-hidden="true"><i class="bi bi-arrow-up-right"></i></span>
+              </button>
+              <div class="include-item__panel" id="include-panel-1">
+                <div class="include-item__panel-inner">
+                  <div class="include-item__content">
+                    <p class="include-item__description">No usamos una plantilla genérica: diseñamos cada sección para que se adapte a tu marca, objetivos y público.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="include-item">
+              <button class="include-item__trigger" type="button" aria-expanded="false" aria-controls="include-panel-2">
+                <span class="include-item__number">02</span>
+                <span class="include-item__title">Funcional y responsive</span>
+                <span class="include-item__arrow" aria-hidden="true"><i class="bi bi-arrow-up-right"></i></span>
+              </button>
+              <div class="include-item__panel" id="include-panel-2">
+                <div class="include-item__panel-inner">
+                  <div class="include-item__content">
+                    <p class="include-item__description">Tu web se adapta y funciona correctamente en celular, tablet y computadora, para que la experiencia sea clara en cualquier pantalla.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="include-item">
+              <button class="include-item__trigger" type="button" aria-expanded="false" aria-controls="include-panel-3">
+                <span class="include-item__number">03</span>
+                <span class="include-item__title">Lista para publicar</span>
+                <span class="include-item__arrow" aria-hidden="true"><i class="bi bi-arrow-up-right"></i></span>
+              </button>
+              <div class="include-item__panel" id="include-panel-3">
+                <div class="include-item__panel-inner">
+                  <div class="include-item__content">
+                    <p class="include-item__description">Recibís todos los archivos optimizados y preparados para subir a tu hosting apenas termina el proyecto. Si necesitás que nosotros lo hagamos por vos, es necesario que tengas dominio y hosting contratados y nos proporciones todos los datos la misma semana que terminemos el proyecto.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section process" id="proceso" aria-labelledby="process-title">
+        <div class="wrap">
+          <div class="section__head reveal">
+            <p class="eyebrow">Cómo funciona</p>
+            <h2 id="process-title">Cinco días, un proceso <em>claro.</em></h2>
+          </div>
+          <div class="process-list">
+            <article class="process-step reveal">
+              <h3>Días 1 y 2 — Relevamiento y definición</h3>
+              <p>Completás un formulario breve donde nos contás qué imaginás para tu sitio, nos compartís el contenido —textos, imágenes y logo— y referencias gráficas que te gusten. Con eso definimos la estructura y la estética antes de empezar a construir.</p>
+            </article>
+            <article class="process-step reveal">
+              <h3>Días 3 y 4 — Desarrollo</h3>
+              <p>Construimos el sitio y adaptamos la experiencia a todos los dispositivos —celular, tablet y PC—. Te entregamos una primera versión para que nos des tu feedback.</p>
+            </article>
+            <article class="process-step reveal">
+              <h3>Día 5 — Ajustes y entrega final</h3>
+              <p>Hacemos los ajustes según tu feedback y te entregamos el sitio listo para publicar, tras una revisión final.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="precio" aria-labelledby="price-title">
+        <div class="wrap">
+          <div class="section__head reveal">
+            <p class="eyebrow">Inversión</p>
+            <h2 id="price-title">Un precio claro. <em>Sin letra chica.</em></h2>
+          </div>
+          <div class="price-layout">
+            <div class="details reveal">
+              <h3>Qué incluye</h3>
+              <ul class="check-list">
+                <li><i class="bi bi-check2" aria-hidden="true"></i>Diseño personalizado de una landing page de hasta 5 secciones</li>
+                <li><i class="bi bi-check2" aria-hidden="true"></i>Desarrollo responsive para celular, tablet y PC</li>
+                <li><i class="bi bi-check2" aria-hidden="true"></i>Carga del contenido que nos proporciones</li>
+                <li><i class="bi bi-check2" aria-hidden="true"></i>Dos rondas de ajustes</li>
+                <li><i class="bi bi-check2" aria-hidden="true"></i>Entrega de archivos listos para publicar</li>
+                <li><i class="bi bi-check2" aria-hidden="true"></i>7 días de soporte técnico post-entrega</li>
+              </ul>
+            </div>
+            <div class="details reveal">
+              <h3>Qué no incluye</h3>
+              <ul class="check-list check-list--excluded">
+                <li><i class="bi bi-x-lg" aria-hidden="true"></i>Compra del dominio o plan de hosting</li>
+                <li><i class="bi bi-x-lg" aria-hidden="true"></i>Redacción de textos o producción de fotografías</li>
+                <li><i class="bi bi-x-lg" aria-hidden="true"></i>Tienda online o funcionalidades avanzadas</li>
+                <li><i class="bi bi-x-lg" aria-hidden="true"></i>Nuevas secciones o cambios fuera del alcance acordado</li>
+              </ul>
+            </div>
+            <article class="price-card reveal">
+              <p class="price-card__label">Web express</p>
+              <p class="price-card__amount">400 <small>USD</small></p>
+              <p class="price-card__copy">Una landing page personalizada, responsive y lista para publicar en cinco días.</p>
+              <div class="price-card__payments">
+                <p>50% de adelanto antes de empezar.</p>
+                <p>50% antes de la entrega final.</p>
+              </div>
+              <a class="button" href="#contacto">Reservar mi lugar <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq" aria-labelledby="faq-title">
+        <div class="wrap">
+          <div class="section__head reveal">
+            <h2 id="faq-title">Preguntas frecuentes</h2>
+          </div>
+          <div class="faq-list reveal">
+            <details>
+              <summary>¿Qué pasa si no tengo el contenido listo?</summary>
+              <p>Podemos ayudarte a ordenar y adaptar el material que tengas. La redacción desde cero o la producción de fotos no están incluidas, pero podemos cotizarlas por separado.</p>
+            </details>
+            <details>
+              <summary>¿Qué es una sección de la web y cómo la elijo?</summary>
+              <p>Una sección es cada bloque o parte en la que se divide tu landing page, por ejemplo: banner, sobre nosotros, servicios, testimonios o contacto. Cada una cumple un objetivo distinto dentro del recorrido que hace el usuario en tu web.</p>
+              <p>Si no lo tenés claro, no hace falta que la definas de antemano: en el formulario inicial nos contás qué querés comunicar y nosotros te ayudamos a definir cuáles son las 5 secciones que mejor funcionan para tu objetivo —vender, generar contactos, dar a conocer tu marca, etc.—.</p>
+            </details>
+            <details>
+              <summary>¿Puedo pedir cambios después?</summary>
+              <p>El servicio incluye una ronda de ajustes antes de la entrega. Los cambios posteriores o nuevas funcionalidades se pueden hacer con un presupuesto adicional.</p>
+            </details>
+            <details>
+              <summary>¿Necesito comprar el dominio aparte?</summary>
+              <p>Sí. El dominio y el hosting no están incluidos en los USD 400. Si no sabés qué contratar, te recomendamos una opción según tu proyecto.</p>
+            </details>
+            <details>
+              <summary>¿La web puede tener tienda online?</summary>
+              <p>Este paquete cubre una landing page informativa. Una tienda online requiere otro alcance; escribinos y la cotizamos según la cantidad de productos y funciones.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contacto" aria-labelledby="contact-title">
+        <div class="wrap contact-layout">
+          <h2 class="reveal" id="contact-title">Tu web puede estar lista la próxima semana.</h2>
+          <a
+            class="button reveal"
+            href="https://wa.me/5491154749450?text=Hola%20R%C3%8AVE%20Studio%2C%20quiero%20consultar%20por%20mi%20web%20en%205%20d%C3%ADas."
+            target="_blank"
+            rel="noopener noreferrer"
+          >Quiero mi web</a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="figma-frame reveal" data-figma-frame>
+          <div class="figma-frame__border" aria-hidden="true"></div>
+          <span class="figma-frame__handle" aria-hidden="true"></span>
+          <span class="figma-frame__handle" aria-hidden="true"></span>
+          <span class="figma-frame__handle" aria-hidden="true"></span>
+          <span class="figma-frame__handle" aria-hidden="true"></span>
+          <svg
+            class="footer-logo"
+            data-vector-logo
+            viewBox="0 0 389.9 151.95"
+            role="img"
+            aria-label="Logo editable de RÊVE Studio"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path class="logo-shape" data-editable-path d="M81.1,111.84l12.17,39.98-21.41.08-7.53-48.75-46.18-.24v48.99s-18.14-.05-18.14-.05V34.91s54.9.23,54.9.23c8.92.04,17.71,2.89,24.64,7.78,7.18,6.83,8.66,15.87,8.53,25.47-.14,10.89-5.8,20.33-16.95,22.72-6.27,1.34-12.91,1.82-19.07,2.28.03,1.26.02,2.97.51,2.97h3.94c11.11,0,21.15,4.16,24.59,15.48ZM70.27,67.83c-.32-9.81-6.02-16.74-16.23-16.85l-35.89-.38v36.64s35.9-.38,35.9-.38c11.11-.12,16.56-8.31,16.22-19.04Z" />
+            <polygon class="logo-shape" data-editable-polygon points="384.99 101.07 331.62 101.11 331.54 136.3 389.9 136.35 389.9 151.88 313.73 151.89 313.71 34.93 389.74 34.87 389.82 50.52 331.56 50.54 331.61 85.55 384.86 85.52 384.99 101.07" />
+            <polygon class="logo-shape" data-editable-polygon points="180.49 101.07 127.13 101.11 127.04 136.3 185.4 136.35 185.4 151.88 109.24 151.89 109.21 34.93 185.24 34.87 185.32 50.52 127.06 50.54 127.11 85.55 180.36 85.52 180.49 101.07" />
+            <polygon class="logo-shape" data-editable-polygon points="282.12 35.11 300.94 34.95 266.47 151.95 228.79 151.83 194.28 35.22 212.85 35.08 245.67 148.63 249.29 149.22 282.12 35.11" />
+            <path class="logo-shape" d="M160.09,24.5c-4.78-4.37-8.78-8.89-12.74-13.97-3.63,4.36-7.97,9.29-12.3,13.79l-7.09-.09c4.72-7.9,8.21-15.48,10.3-24.23h18.14c2.09,8.73,5.62,16.35,10.25,24.17l-6.56.33Z" />
+            <g class="vector-rig" data-vector-rig aria-hidden="true"></g>
+          </svg>
+          <span class="figma-frame__badge" data-figma-size aria-hidden="true">0 × 0</span>
+        </div>
+        <p class="footer-hint">Mové los nodos y jugá</p>
+      </div>
+    </footer>
+
+    <a
+      class="whatsapp-float"
+      href="https://wa.me/5491154749450?text=Hola%20R%C3%8AVE%20Studio%2C%20quiero%20consultar%20por%20mi%20web%20en%205%20d%C3%ADas."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Consultar por WhatsApp"
+    >
+      <i class="bi bi-whatsapp" aria-hidden="true"></i>
+    </a>
+
+    <script>
+      const body = document.body;
+      const toggle = document.querySelector(".nav__toggle");
+      const links = document.querySelectorAll(".nav__links a");
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => body.classList.add("is-ready"));
+      });
+
+      toggle.addEventListener("click", () => {
+        const isOpen = body.classList.toggle("menu-open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+      });
+
+      links.forEach((link) => link.addEventListener("click", () => {
+        body.classList.remove("menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Abrir menú");
+      }));
+
+      const includeItems = document.querySelectorAll(".include-item");
+      includeItems.forEach((item) => {
+        const trigger = item.querySelector(".include-item__trigger");
+        trigger.addEventListener("click", () => {
+          const wasOpen = item.classList.contains("is-open");
+
+          includeItems.forEach((otherItem) => {
+            otherItem.classList.remove("is-open");
+            otherItem.querySelector(".include-item__trigger").setAttribute("aria-expanded", "false");
+          });
+
+          if (!wasOpen) {
+            item.classList.add("is-open");
+            trigger.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      document.querySelectorAll(".faq-list details").forEach((details) => {
+        const summary = details.querySelector("summary");
+
+        summary.addEventListener("click", (event) => {
+          event.preventDefault();
+          const shouldOpen = !details.open || details.classList.contains("is-closing");
+          const startHeight = details.offsetHeight;
+
+          if (details._faqAnimation) details._faqAnimation.cancel();
+          details.classList.remove("is-opening", "is-closing");
+
+          if (shouldOpen) {
+            details.open = true;
+            details.classList.add("is-opening");
+          } else {
+            details.classList.add("is-closing");
+          }
+
+          const endHeight = shouldOpen ? details.scrollHeight : summary.offsetHeight;
+          details.style.overflow = "hidden";
+          details._faqAnimation = details.animate(
+            { height: [`${startHeight}px`, `${endHeight}px`] },
+            {
+              duration: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 340,
+              easing: "cubic-bezier(.65, 0, .35, 1)"
+            }
+          );
+
+          if (shouldOpen) {
+            window.requestAnimationFrame(() => details.classList.remove("is-opening"));
+          }
+
+          details._faqAnimation.onfinish = () => {
+            if (!shouldOpen) details.open = false;
+            details.classList.remove("is-opening", "is-closing");
+            details.style.height = "";
+            details.style.overflow = "";
+            details._faqAnimation = null;
+          };
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+      const figmaFrame = document.querySelector("[data-figma-frame]");
+      const figmaSize = document.querySelector("[data-figma-size]");
+      if (figmaFrame && figmaSize) {
+        const updateFigmaSize = () => {
+          figmaSize.textContent = `${Math.round(figmaFrame.offsetWidth)} × ${Math.round(figmaFrame.offsetHeight)}`;
+        };
+        new ResizeObserver(updateFigmaSize).observe(figmaFrame);
+        updateFigmaSize();
+      }
+
+      const vectorLogo = document.querySelector("[data-vector-logo]");
+      const vectorRig = document.querySelector("[data-vector-rig]");
+      if (vectorLogo && vectorRig) {
+        const svgNamespace = "http://www.w3.org/2000/svg";
+        let vectorDrag = null;
+
+        const parseVectorPath = (source) => {
+          const tokens = [];
+          const expression = /([MmLlHhVvCcSsZz])|(-?\d*\.?\d+(?:e[-+]?\d+)?)/gi;
+          let match;
+          let currentToken = null;
+          while ((match = expression.exec(source))) {
+            if (match[1]) {
+              currentToken = { command: match[1], values: [] };
+              tokens.push(currentToken);
+            } else if (currentToken) currentToken.values.push(Number(match[2]));
+          }
+
+          const anchors = [];
+          const starts = [];
+          const closed = [];
+          let current = { x: 0, y: 0 };
+          let subStart = { x: 0, y: 0 };
+          let previousControl = null;
+          let previousCommand = "";
+          const push = (point) => anchors.push({ p: { ...point }, in: null, out: null });
+          const last = () => anchors[anchors.length - 1];
+
+          tokens.forEach(({ command, values }) => {
+            const relative = command === command.toLowerCase();
+            const type = command.toUpperCase();
+            let index = 0;
+            const number = () => values[index++];
+            const point = () => {
+              const x = number();
+              const y = number();
+              return relative ? { x: current.x + x, y: current.y + y } : { x, y };
+            };
+
+            if (type === "M") {
+              current = point();
+              subStart = { ...current };
+              starts.push(anchors.length);
+              closed.push(false);
+              push(current);
+              while (index < values.length) { current = point(); push(current); }
+              previousControl = null;
+            } else if (type === "L") {
+              while (index < values.length) { current = point(); push(current); }
+              previousControl = null;
+            } else if (type === "H") {
+              while (index < values.length) {
+                const x = number();
+                current = { x: relative ? current.x + x : x, y: current.y };
+                push(current);
+              }
+              previousControl = null;
+            } else if (type === "V") {
+              while (index < values.length) {
+                const y = number();
+                current = { x: current.x, y: relative ? current.y + y : y };
+                push(current);
+              }
+              previousControl = null;
+            } else if (type === "C") {
+              while (index < values.length) {
+                const first = point();
+                const second = point();
+                const end = point();
+                last().out = first;
+                push(end);
+                last().in = second;
+                current = end;
+                previousControl = second;
+              }
+            } else if (type === "S") {
+              while (index < values.length) {
+                const first = previousCommand === "C" || previousCommand === "S"
+                  ? { x: 2 * current.x - (previousControl?.x ?? current.x), y: 2 * current.y - (previousControl?.y ?? current.y) }
+                  : { ...current };
+                const second = point();
+                const end = point();
+                last().out = first;
+                push(end);
+                last().in = second;
+                current = end;
+                previousControl = second;
+              }
+            } else if (type === "Z") {
+              if (closed.length) closed[closed.length - 1] = true;
+              current = { ...subStart };
+              previousControl = null;
+            }
+            previousCommand = type;
+          });
+          return { anchors, starts, closed };
+        };
+
+        const serializeVectorPath = (model) => {
+          const format = (value) => String(Math.round(value * 100) / 100);
+          const output = [];
+          model.starts.forEach((start, subpathIndex) => {
+            const end = model.starts[subpathIndex + 1] ?? model.anchors.length;
+            const count = end - start;
+            if (!count) return;
+            output.push(`M ${format(model.anchors[start].p.x)} ${format(model.anchors[start].p.y)}`);
+            const segmentCount = model.closed[subpathIndex] ? count : count - 1;
+            for (let segment = 0; segment < segmentCount; segment++) {
+              const from = model.anchors[start + segment];
+              const to = model.anchors[start + ((segment + 1) % count)];
+              if (from.out || to.in) {
+                const first = from.out || from.p;
+                const second = to.in || to.p;
+                output.push(`C ${format(first.x)} ${format(first.y)} ${format(second.x)} ${format(second.y)} ${format(to.p.x)} ${format(to.p.y)}`);
+              } else output.push(`L ${format(to.p.x)} ${format(to.p.y)}`);
+            }
+            if (model.closed[subpathIndex]) output.push("Z");
+          });
+          return output.join(" ");
+        };
+
+        const toVectorPoint = (event) => {
+          const matrix = vectorLogo.getScreenCTM();
+          if (!matrix) return null;
+          const point = vectorLogo.createSVGPoint();
+          point.x = event.clientX;
+          point.y = event.clientY;
+          return point.matrixTransform(matrix.inverse());
+        };
+
+        document.querySelectorAll("[data-editable-polygon]").forEach((polygon) => {
+          Array.from(polygon.points).forEach((point, index) => {
+            const hit = document.createElementNS(svgNamespace, "circle");
+            const anchor = document.createElementNS(svgNamespace, "circle");
+            hit.setAttribute("class", "vector-anchor-hit");
+            hit.setAttribute("cx", point.x);
+            hit.setAttribute("cy", point.y);
+            hit.setAttribute("r", "10");
+            anchor.setAttribute("class", "vector-anchor");
+            anchor.setAttribute("cx", point.x);
+            anchor.setAttribute("cy", point.y);
+            anchor.setAttribute("r", "4");
+            vectorRig.append(hit, anchor);
+
+            hit.addEventListener("pointerdown", (event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              hit.setPointerCapture(event.pointerId);
+              vectorDrag = { polygon, index, hit, anchor, pointerId: event.pointerId };
+            });
+          });
+        });
+
+        document.querySelectorAll("[data-editable-path]").forEach((pathElement) => {
+          const model = parseVectorPath(pathElement.getAttribute("d") || "");
+          const controls = model.anchors.map((pathAnchor, index) => {
+            const control = {};
+            const showAnchor = index % 2 === 0 || index === model.anchors.length - 1;
+            if (!showAnchor) return control;
+            const hit = document.createElementNS(svgNamespace, "circle");
+            const dot = document.createElementNS(svgNamespace, "circle");
+            hit.setAttribute("class", "vector-anchor-hit");
+            hit.setAttribute("r", "10");
+            dot.setAttribute("class", "vector-anchor");
+            dot.setAttribute("r", "4");
+            vectorRig.append(hit, dot);
+            hit.addEventListener("pointerdown", (event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              hit.setPointerCapture(event.pointerId);
+              vectorDrag = { kind: "path-anchor", model, pathElement, index, hit, pointerId: event.pointerId, controls };
+            });
+            control.anchor = { hit, dot };
+            return control;
+          });
+
+          const renderPathControls = () => {
+            pathElement.setAttribute("d", serializeVectorPath(model));
+            model.anchors.forEach((pathAnchor, index) => {
+              const control = controls[index];
+              if (control.anchor) {
+                control.anchor.hit.setAttribute("cx", pathAnchor.p.x);
+                control.anchor.hit.setAttribute("cy", pathAnchor.p.y);
+                control.anchor.dot.setAttribute("cx", pathAnchor.p.x);
+                control.anchor.dot.setAttribute("cy", pathAnchor.p.y);
+              }
+              ["in", "out"].forEach((side) => {
+                const handle = control[side];
+                const handlePoint = pathAnchor[side];
+                if (!handle || !handlePoint) return;
+                handle.arm.setAttribute("x1", pathAnchor.p.x);
+                handle.arm.setAttribute("y1", pathAnchor.p.y);
+                handle.arm.setAttribute("x2", handlePoint.x);
+                handle.arm.setAttribute("y2", handlePoint.y);
+                handle.hit.setAttribute("cx", handlePoint.x);
+                handle.hit.setAttribute("cy", handlePoint.y);
+                handle.dot.setAttribute("x", handlePoint.x - 3);
+                handle.dot.setAttribute("y", handlePoint.y - 3);
+                handle.dot.setAttribute("transform", `rotate(45 ${handlePoint.x} ${handlePoint.y})`);
+              });
+            });
+          };
+          model.render = renderPathControls;
+          renderPathControls();
+        });
+
+        vectorLogo.addEventListener("pointermove", (event) => {
+          if (!vectorDrag) return;
+          const point = toVectorPoint(event);
+          if (!point) return;
+          const nextPoint = vectorLogo.createSVGPoint();
+          nextPoint.x = Math.max(0, Math.min(389.9, point.x));
+          nextPoint.y = Math.max(0, Math.min(151.95, point.y));
+          if (vectorDrag.polygon) {
+            vectorDrag.polygon.points.replaceItem(nextPoint, vectorDrag.index);
+            vectorDrag.hit.setAttribute("cx", nextPoint.x);
+            vectorDrag.hit.setAttribute("cy", nextPoint.y);
+            vectorDrag.anchor.setAttribute("cx", nextPoint.x);
+            vectorDrag.anchor.setAttribute("cy", nextPoint.y);
+          } else if (vectorDrag.kind === "path-anchor") {
+            const pathAnchor = vectorDrag.model.anchors[vectorDrag.index];
+            const deltaX = nextPoint.x - pathAnchor.p.x;
+            const deltaY = nextPoint.y - pathAnchor.p.y;
+            pathAnchor.p = { x: nextPoint.x, y: nextPoint.y };
+            if (pathAnchor.in) pathAnchor.in = { x: pathAnchor.in.x + deltaX, y: pathAnchor.in.y + deltaY };
+            if (pathAnchor.out) pathAnchor.out = { x: pathAnchor.out.x + deltaX, y: pathAnchor.out.y + deltaY };
+            vectorDrag.model.render();
+          } else if (vectorDrag.kind === "path-handle") {
+            vectorDrag.model.anchors[vectorDrag.index][vectorDrag.side] = { x: nextPoint.x, y: nextPoint.y };
+            vectorDrag.model.render();
+          }
+        });
+
+        const finishVectorDrag = (event) => {
+          if (!vectorDrag) return;
+          if (vectorDrag.hit.hasPointerCapture(vectorDrag.pointerId)) {
+            vectorDrag.hit.releasePointerCapture(vectorDrag.pointerId);
+          }
+          vectorDrag = null;
+        };
+        vectorLogo.addEventListener("pointerup", finishVectorDrag);
+        vectorLogo.addEventListener("pointercancel", finishVectorDrag);
+      }
+
+    </script>
+    <script>
+      (() => {
+        const host = document.querySelector("[data-image-sphere]");
+        const images = Array.from(document.querySelectorAll(".dom-sphere__image"));
+        if (!host || !images.length) return;
+
+        const points = images.map((image, index) => {
+          const y = 1 - ((index + .5) / images.length) * 2;
+          const radiusAtY = Math.sqrt(Math.max(0, 1 - y * y));
+          const theta = Math.PI * (3 - Math.sqrt(5)) * index;
+          return {
+            image,
+            x: Math.cos(theta) * radiusAtY,
+            y,
+            z: Math.sin(theta) * radiusAtY
+          };
+        });
+
+        let rotationX = -.12;
+        let rotationY = 0;
+        let velocityX = 0;
+        let velocityY = 0;
+        let dragging = false;
+        let lastX = 0;
+        let lastY = 0;
+        let lastFrameTime = 0;
+        let frame = 0;
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        const renderSphere = () => {
+          const bounds = host.getBoundingClientRect();
+          const radius = Math.min(bounds.width * .62, bounds.height * .58, 580);
+          const cosY = Math.cos(rotationY);
+          const sinY = Math.sin(rotationY);
+          const cosX = Math.cos(rotationX);
+          const sinX = Math.sin(rotationX);
+
+          points.forEach((point) => {
+            const rotatedX = point.x * cosY - point.z * sinY;
+            const firstZ = point.x * sinY + point.z * cosY;
+            const rotatedY = point.y * cosX - firstZ * sinX;
+            const rotatedZ = point.y * sinX + firstZ * cosX;
+            const perspective = 1 / (1.18 - rotatedZ * .3);
+            let x = rotatedX * radius * perspective;
+            let y = rotatedY * radius * .82 * perspective;
+            const depth = (rotatedZ + 1) / 2;
+            const scale = (.62 + depth * .62) * perspective;
+            const safeX = Math.min(bounds.width * .47, 620);
+            const safeY = Math.min(bounds.height * .36, 300);
+            const ellipseDistance = Math.sqrt((x / safeX) ** 2 + (y / safeY) ** 2);
+
+            if (ellipseDistance < 1) {
+              if (ellipseDistance < .001) {
+                x = safeX;
+                y = 0;
+              } else {
+                const push = 1 / ellipseDistance;
+                x *= push;
+                y *= push;
+              }
+            }
+
+            point.image.style.zIndex = String(Math.round(depth * 100));
+            point.image.style.opacity = String(.3 + depth * .7);
+            point.image.style.filter = `saturate(${.7 + depth * .45})`;
+            point.image.style.transform =
+              `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale})`;
+          });
+        };
+
+        const animateSphere = (time = 0) => {
+          const frameDelta = lastFrameTime ? Math.min(32, time - lastFrameTime) : 16.67;
+          lastFrameTime = time;
+          if (!dragging) {
+            if (!reducedMotion) rotationY += .0032 * (frameDelta / 16.67);
+          }
+          renderSphere();
+          frame = window.requestAnimationFrame(animateSphere);
+        };
+
+        host.addEventListener("pointerdown", (event) => {
+          dragging = true;
+          lastX = event.clientX;
+          lastY = event.clientY;
+          velocityX = velocityY = 0;
+          host.classList.add("is-dragging");
+          host.setPointerCapture(event.pointerId);
+        });
+        host.addEventListener("pointermove", (event) => {
+          if (!dragging) return;
+          const dx = event.clientX - lastX;
+          const dy = event.clientY - lastY;
+          rotationY += dx * .006;
+          rotationX -= dy * .006;
+          velocityX = dx * .0008;
+          velocityY = -dy * .0008;
+          lastX = event.clientX;
+          lastY = event.clientY;
+        });
+        const releaseSphere = (event) => {
+          if (!dragging) return;
+          dragging = false;
+          velocityX = velocityY = 0;
+          host.classList.remove("is-dragging");
+          if (host.hasPointerCapture(event.pointerId)) host.releasePointerCapture(event.pointerId);
+        };
+        host.addEventListener("pointerup", releaseSphere);
+        host.addEventListener("pointercancel", releaseSphere);
+        window.addEventListener("resize", renderSphere);
+
+        renderSphere();
+        frame = window.requestAnimationFrame(animateSphere);
+      })();
+    </script>
+    <script>
+      const sphereHost = document.querySelector("[data-image-sphere]");
+      const sphereImages = [
+        "assets/portfolio-jpg/wabro.jpg",
+        "assets/portfolio-jpg/valentina.jpg",
+        "assets/portfolio-jpg/dos-orillas.jpg",
+        "assets/portfolio-jpg/wabro.jpg",
+        "assets/portfolio-jpg/valentina.jpg",
+        "assets/portfolio-jpg/dos-orillas.jpg",
+        "assets/portfolio-jpg/wabro.jpg",
+        "assets/portfolio-jpg/valentina.jpg",
+        "assets/portfolio-jpg/dos-orillas.jpg"
+      ];
+
+      class HeroImageSphere {
+        constructor(host, urls) {
+          this.host = host;
+          this.urls = urls;
+          this.scene = new THREE.Scene();
+          this.group = new THREE.Group();
+          this.scene.add(this.group);
+          this.camera = new THREE.PerspectiveCamera(28, 1, .1, 1800);
+          this.camera.position.z = 520;
+          this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+          this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+          this.renderer.setClearColor(0x000000, 0);
+          this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+          this.renderer.domElement.style.cssText = "position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;";
+          this.renderer.domElement.setAttribute("aria-hidden", "true");
+          host.prepend(this.renderer.domElement);
+
+          this.planes = [];
+          this.raycaster = new THREE.Raycaster();
+          this.pointer = new THREE.Vector2(-2, -2);
+          this.inverseQuaternion = new THREE.Quaternion();
+          this.worldPosition = new THREE.Vector3();
+          this.centerPosition = new THREE.Vector3();
+          this.tempPosition = new THREE.Vector3();
+          this.rotationX = 0;
+          this.rotationY = 0;
+          this.currentX = 0;
+          this.currentY = 0;
+          this.baseX = 0;
+          this.baseY = 0;
+          this.velocityX = 0;
+          this.velocityY = 0;
+          this.dragging = false;
+          this.hovered = null;
+          this.focused = null;
+          this.running = false;
+          this.reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+          this.resize();
+          this.loadImages();
+          this.bindEvents();
+          this.resizeObserver = new ResizeObserver(() => this.resize());
+          this.resizeObserver.observe(host);
+        }
+
+        loadImages() {
+          const loader = new THREE.TextureLoader();
+          this.urls.forEach((url, index) => {
+            loader.load(url, (texture) => {
+              texture.colorSpace = THREE.SRGBColorSpace;
+              texture.anisotropy = Math.min(8, this.renderer.capabilities.getMaxAnisotropy());
+              const aspect = (texture.image.width || 1) / (texture.image.height || 1);
+              const geometry = new THREE.PlaneGeometry(72 * aspect, 72);
+              const material = new THREE.MeshBasicMaterial({
+                map: texture,
+                transparent: true,
+                opacity: 0,
+                depthWrite: false,
+                side: THREE.DoubleSide
+              });
+              const plane = new THREE.Mesh(geometry, material);
+
+              const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+              const y = 1 - ((index + .5) / this.urls.length) * 2;
+              const radial = Math.sqrt(1 - y * y);
+              const theta = goldenAngle * index;
+              const radius = 155 + ((index % 3) - 1) * 16;
+              plane.position.set(
+                Math.cos(theta) * radial * radius,
+                y * radius,
+                Math.sin(theta) * radial * radius
+              );
+              plane.userData = {
+                home: plane.position.clone(),
+                hover: false,
+                opacity: 0,
+                focus: 0
+              };
+              this.group.add(plane);
+              this.planes.push(plane);
+              if (!this.running) this.renderFrame();
+            });
+          });
+        }
+
+        bindEvents() {
+          const canvas = this.renderer.domElement;
+          const updatePointer = (event) => {
+            const rect = this.host.getBoundingClientRect();
+            this.pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            this.pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+          };
+
+          canvas.addEventListener("pointerdown", (event) => {
+            this.dragging = true;
+            this.downX = this.lastX = event.clientX;
+            this.downY = this.lastY = event.clientY;
+            this.velocityX = this.velocityY = 0;
+            canvas.setPointerCapture(event.pointerId);
+            canvas.style.cursor = "grabbing";
+          });
+          canvas.addEventListener("pointermove", (event) => {
+            updatePointer(event);
+            if (!this.dragging) return;
+            const dx = event.clientX - this.lastX;
+            const dy = event.clientY - this.lastY;
+            this.rotationY += dx;
+            this.rotationX -= dy;
+            this.velocityY = dx * .75;
+            this.velocityX = -dy * .75;
+            this.lastX = event.clientX;
+            this.lastY = event.clientY;
+          });
+          canvas.addEventListener("pointerup", (event) => {
+            if (!this.dragging) return;
+            const moved = Math.hypot(event.clientX - this.downX, event.clientY - this.downY);
+            this.dragging = false;
+            canvas.releasePointerCapture(event.pointerId);
+            canvas.style.cursor = "grab";
+            if (moved < 6) {
+              updatePointer(event);
+              const hit = this.pick();
+              this.focused = this.focused === hit ? null : hit;
+            }
+          });
+          canvas.addEventListener("pointerleave", () => {
+            if (!this.dragging) this.pointer.set(-2, -2);
+          });
+          window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") this.focused = null;
+          });
+
+          this.visibilityObserver = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) this.start();
+            else this.stop();
+          }, { threshold: .05 });
+          this.visibilityObserver.observe(this.host);
+        }
+
+        pick() {
+          this.raycaster.setFromCamera(this.pointer, this.camera);
+          return this.raycaster.intersectObjects(this.planes, false)[0]?.object || null;
+        }
+
+        resize() {
+          const width = this.host.clientWidth || 1;
+          const height = this.host.clientHeight || 1;
+          this.renderer.setSize(width, height, false);
+          this.camera.aspect = width / height;
+          this.camera.updateProjectionMatrix();
+        }
+
+        start() {
+          if (this.running) return;
+          this.running = true;
+          this.loop();
+        }
+
+        stop() {
+          this.running = false;
+          cancelAnimationFrame(this.frame);
+        }
+
+        loop = () => {
+          if (!this.running) return;
+          this.renderFrame();
+          this.frame = requestAnimationFrame(this.loop);
+        };
+
+        renderFrame() {
+          if (!this.dragging) {
+            this.rotationY += this.velocityY;
+            this.rotationX -= this.velocityX;
+            this.velocityX *= .94;
+            this.velocityY *= .94;
+          }
+
+          this.currentX += (this.rotationX - this.currentX) * .16;
+          this.currentY += (this.rotationY - this.currentY) * .16;
+          if (!this.reducedMotion) {
+            this.baseX += .00018;
+            this.baseY += .00055;
+          }
+          this.group.rotation.x = this.baseX + this.currentX * .002;
+          this.group.rotation.y = this.baseY + this.currentY * .002;
+
+          const nextHovered = !this.dragging && !this.focused ? this.pick() : null;
+          if (nextHovered !== this.hovered) {
+            if (this.hovered) this.hovered.userData.hover = false;
+            this.hovered = nextHovered;
+            if (this.hovered) this.hovered.userData.hover = true;
+          }
+
+          this.inverseQuaternion.copy(this.group.quaternion).invert();
+          this.centerPosition.set(0, 0, this.camera.position.z - 300);
+          const focusViewHeight = 2 * 300 * Math.tan((this.camera.fov * Math.PI) / 360);
+          const focusScale = (focusViewHeight * .58) / 72;
+
+          this.planes.forEach((plane) => {
+            plane.quaternion.copy(this.inverseQuaternion);
+            const focusTarget = plane === this.focused ? 1 : 0;
+            plane.userData.focus += (focusTarget - plane.userData.focus) * .13;
+            const focus = plane.userData.focus;
+
+            if (focus > .001) {
+              this.tempPosition.copy(this.centerPosition);
+              this.group.worldToLocal(this.tempPosition);
+              plane.position.copy(plane.userData.home).lerp(this.tempPosition, focus);
+            } else {
+              plane.position.lerp(plane.userData.home, .14);
+            }
+
+            plane.getWorldPosition(this.worldPosition);
+            const depthScale = .78 + (this.worldPosition.z + 180) / 650;
+            let targetScale = plane.userData.hover ? depthScale * 1.24 : depthScale;
+            targetScale += (focusScale - targetScale) * focus;
+            const scale = plane.scale.x + (targetScale - plane.scale.x) * .1;
+            plane.scale.setScalar(scale);
+
+            const targetOpacity = this.focused ? .2 + .8 * focus : .95;
+            plane.userData.opacity += (targetOpacity - plane.userData.opacity) * .1;
+            plane.material.opacity = plane.userData.opacity;
+            plane.renderOrder = focus > .5 ? 2 : 0;
+          });
+
+          this.renderer.render(this.scene, this.camera);
+        }
+      }
+
+      if (sphereHost && window.THREE && window.WebGLRenderingContext) {
+        new HeroImageSphere(sphereHost, sphereImages);
+      }
+    </script>
+  </body>
+</html>

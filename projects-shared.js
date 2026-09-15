@@ -1,59 +1,6 @@
 (() => {
   const HOVER_SLIDE_MS = 650;
-  const uploadDateCache = new Map();
-
   const getLanguage = () => document.documentElement.lang || "es";
-
-  const getResourceUploadDate = async (src) => {
-    if (uploadDateCache.has(src)) {
-      return uploadDateCache.get(src);
-    }
-
-    let uploadedAt = 0;
-
-    try {
-      const response = await fetch(src, { method: "HEAD", cache: "no-store" });
-
-      if (response.ok) {
-        const lastModified = response.headers.get("Last-Modified");
-
-        if (lastModified) {
-          uploadedAt = Date.parse(lastModified) || 0;
-        }
-      }
-    } catch {
-      uploadedAt = 0;
-    }
-
-    uploadDateCache.set(src, uploadedAt);
-    return uploadedAt;
-  };
-
-  const getProjectUploadDate = async (project) => {
-    const sources = [project.cover, ...(project.hoverImages || [])];
-    const dates = await Promise.all(sources.map(getResourceUploadDate));
-    return Math.max(...dates, 0);
-  };
-
-  const sortProjectsByUploadDate = async (projects) => {
-    const projectsWithDates = await Promise.all(
-      projects.map(async (project, index) => ({
-        project,
-        uploadedAt: await getProjectUploadDate(project),
-        index,
-      }))
-    );
-
-    return projectsWithDates
-      .sort((left, right) => {
-        if (right.uploadedAt !== left.uploadedAt) {
-          return right.uploadedAt - left.uploadedAt;
-        }
-
-        return left.index - right.index;
-      })
-      .map(({ project }) => project);
-  };
 
   const buildCarouselCard = (project, language, options = {}) => {
     const { duplicate = false } = options;
@@ -130,7 +77,7 @@
   const renderPortfolioCarousel = async (track, language = getLanguage()) => {
     if (!track || !window.PROJECTS_DATA?.length) return [];
 
-    const sortedProjects = await sortProjectsByUploadDate(window.PROJECTS_DATA);
+    const sortedProjects = window.PROJECTS_DATA;
     const fragment = document.createDocumentFragment();
 
     sortedProjects.forEach((project) => {
@@ -150,7 +97,7 @@
   const renderProjectsGrid = async (grid, language = getLanguage()) => {
     if (!grid || !window.PROJECTS_DATA?.length) return [];
 
-    const sortedProjects = await sortProjectsByUploadDate(window.PROJECTS_DATA);
+    const sortedProjects = window.PROJECTS_DATA;
     const fragment = document.createDocumentFragment();
 
     sortedProjects.forEach((project) => {
@@ -244,7 +191,6 @@
   };
 
   window.ProjectsShared = {
-    sortProjectsByUploadDate,
     renderPortfolioCarousel,
     renderProjectsGrid,
     applyCarouselLabels,

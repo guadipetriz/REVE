@@ -7,35 +7,19 @@ const hoverPaths = (slug, count) =>
 
 window.PROJECTS_DATA = [
   {
-    id: "olen-aroa",
-    name: "Olen Aroa",
-    cover: "assets/services/branding/branding-07.jpg",
+    id: "akari",
+    name: "AKARI",
+    cover: "assets/portfolio-jpg/Akari.jpg",
     alt: {
-      es: "Identidad visual de Olen Aroa",
-      en: "Visual identity for Olen Aroa",
+      es: "Branding y packaging de AKARI",
+      en: "Branding and packaging for AKARI",
     },
     service: {
       es: "Branding / Packaging",
       en: "Branding / Packaging",
     },
     categories: ["branding", "packaging"],
-    hoverImages: hoverPaths("olen-aroa", 6),
-    carouselLink: "proyectos.html",
-  },
-  {
-    id: "dos-orillas",
-    name: "Dos Orillas",
-    cover: "assets/portfolio-jpg/dos-orillas.jpg",
-    alt: {
-      es: "Identidad visual de Dos Orillas",
-      en: "Visual identity for Dos Orillas",
-    },
-    service: {
-      es: "Branding",
-      en: "Branding",
-    },
-    categories: ["branding"],
-    hoverImages: hoverPaths("dos-orillas", 4),
+    hoverImages: hoverPaths("Akari", 6),
   },
   {
     id: "garage-bar",
@@ -53,6 +37,22 @@ window.PROJECTS_DATA = [
     hoverImages: hoverPaths("garage-bar", 10),
   },
   {
+    id: "olen-aroa",
+    name: "Olen Aroa",
+    cover: "assets/services/branding/branding-07.jpg",
+    alt: {
+      es: "Identidad visual de Olen Aroa",
+      en: "Visual identity for Olen Aroa",
+    },
+    service: {
+      es: "Branding / Packaging",
+      en: "Branding / Packaging",
+    },
+    categories: ["branding", "packaging"],
+    hoverImages: hoverPaths("olen-aroa", 6),
+    carouselLink: "proyectos.html",
+  },
+  {
     id: "valentina",
     name: "Valentina",
     cover: "assets/portfolio-jpg/valentina.jpg",
@@ -66,6 +66,21 @@ window.PROJECTS_DATA = [
     },
     categories: ["branding"],
     hoverImages: hoverPaths("valentina", 4),
+  },
+  {
+    id: "dos-orillas",
+    name: "Dos Orillas",
+    cover: "assets/portfolio-jpg/dos-orillas.jpg",
+    alt: {
+      es: "Identidad visual de Dos Orillas",
+      en: "Visual identity for Dos Orillas",
+    },
+    service: {
+      es: "Branding",
+      en: "Branding",
+    },
+    categories: ["branding"],
+    hoverImages: hoverPaths("dos-orillas", 4),
   },
   {
     id: "checkpoint-charlie",
@@ -96,21 +111,6 @@ window.PROJECTS_DATA = [
     },
     categories: ["packaging"],
     hoverImages: hoverPaths("dulces-serra", 4),
-  },
-  {
-    id: "muvon",
-    name: "Muvon",
-    cover: "assets/portfolio-jpg/muvon.jpg",
-    alt: {
-      es: "Contenido para paid media de Muvon",
-      en: "Paid media content for Muvon",
-    },
-    service: {
-      es: "Contenido para Paid Media",
-      en: "Paid media content",
-    },
-    categories: ["otros"],
-    hoverImages: hoverPaths("muvon", 4),
   },
   {
     id: "wabro",
