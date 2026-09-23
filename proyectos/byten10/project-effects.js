@@ -6,6 +6,7 @@
     { slug: "macarella", name: "Macarella" },
     { slug: "body-koncept", name: "Body Koncept" },
     { slug: "masa-madre", name: "Masa Madre" },
+    { slug: "talia", name: "Talia" },
   ];
   const pathParts = window.location.pathname.split("/").filter(Boolean);
   const currentSlug = pathParts.at(-1) === "index.html" ? pathParts.at(-2) : pathParts.at(-1);
