@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Talia — proyecto realizado para Ten10 Design por RÊVE Studio" />
+    <title>Talia — RÊVE Studio</title>
+    <link rel="icon" href="../../../assets/FavIcon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,100,200..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../styles.css" />
+    <link rel="stylesheet" href="../project.css" />
+  </head>
+  <body class="byten10-project">
+    <header class="site-header">
+      <nav class="navbar" aria-label="Navegación principal" data-nav>
+        <a class="brand" href="../../../#inicio" aria-label="RÊVE Studio, ir al inicio">
+          <img src="../../../assets/LOGO-Bordo.svg" alt="" aria-hidden="true" />
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-menu">
+          <span></span><span></span>
+        </button>
+        <ul class="nav-menu" id="site-menu">
+          <li><a href="../../../#inicio">Inicio</a></li>
+          <li><a href="../../">Proyectos</a></li>
+          <li><a href="../../../#servicios">Servicios</a></li>
+          <li><a href="../../../#contacto">Contacto</a></li>
+          <li><button class="language-toggle" type="button" aria-label="Cambiar idioma a inglés">EN</button></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="byten10-main">
+      <section class="byten10-intro" aria-label="Información del proyecto">
+        <dl class="byten10-intro__facts">
+          <div><dt>Proyecto:</dt><dd>Talia</dd></div>
+          <div><dt>Cliente:</dt><dd>Ten10 Design</dd></div>
+        </dl>
+        <p class="byten10-intro__description">
+          <strong>Proyecto realizado para Ten10 Design.</strong><br />
+          Abrir un negocio gastronómico no es solo una idea: es una secuencia de decisiones. TALIA acompaña ese recorrido, desde la intuición inicial hasta la operación cotidiana. Trabaja desde el oficio y la práctica, ordenando lo complejo, traduciendo el contexto local y estando cerca cuando aparecen los desafíos reales. Más que una consultora, TALIA es criterio, estructura y compañía.
+        </p>
+      </section>
+
+      <section class="byten10-gallery" aria-label="Galería del proyecto Talia">
+        <figure class="byten10-gallery__item byten10-gallery__item--wide"><img src="images/01-wide.webp" alt="Talia — imagen 1" /><figcaption>Imagen horizontal 1</figcaption></figure>
+        <figure class="byten10-gallery__item byten10-gallery__item--wide"><img src="images/02-wide.webp" alt="Talia — imagen 2" loading="lazy" /><figcaption>Imagen horizontal 2</figcaption></figure>
+        <figure class="byten10-gallery__item byten10-gallery__item--wide"><img src="images/03-wide.webp" alt="Talia — imagen 3" loading="lazy" /><figcaption>Imagen horizontal 3</figcaption></figure>
+        <figure class="byten10-gallery__item byten10-gallery__item--wide"><img src="images/04-wide.webp" alt="Talia — imagen 4" loading="lazy" /><figcaption>Imagen horizontal 4</figcaption></figure>
+        <figure class="byten10-gallery__item byten10-gallery__item--wide"><img src="images/05-wide.webp" alt="Talia — imagen 5" loading="lazy" /><figcaption>Imagen horizontal 5</figcaption></figure>
+        <figure class="byten10-gallery__item byten10-gallery__item--wide"><img src="images/06-wide.webp" alt="Talia — imagen 6" loading="lazy" /><figcaption>Imagen horizontal 6</figcaption></figure>
+        <figure class="byten10-gallery__item byten10-gallery__item--wide"><img src="images/07-wide.webp" alt="Talia — imagen 7" loading="lazy" /><figcaption>Imagen horizontal 7</figcaption></figure>
+        <figure class="byten10-gallery__item byten10-gallery__item--wide"><img src="images/08-wide.webp" alt="Talia — imagen 8" loading="lazy" /><figcaption>Imagen horizontal 8</figcaption></figure>
+        <figure class="byten10-gallery__item byten10-gallery__item--wide"><img src="images/09-wide.webp" alt="Talia — imagen 9" loading="lazy" /><figcaption>Imagen horizontal 9</figcaption></figure>
+        <figure class="byten10-gallery__item byten10-gallery__item--wide"><img src="images/10-wide.webp" alt="Talia — imagen 10" loading="lazy" /><figcaption>Imagen horizontal 10</figcaption></figure>
+      </section>
+    </main>
+
+    <footer class="byten10-footer"><p>RÊVE Studio</p><p>© <span id="current-year"></span></p></footer>
+    <script src="../project-effects.js"></script>
+    <script>
+      const toggle = document.querySelector(".nav-toggle");
+      const menu = document.querySelector("#site-menu");
+      document.querySelector("#current-year").textContent = new Date().getFullYear();
+      toggle.addEventListener("click", () => {
+        const open = document.body.classList.toggle("nav-open");
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      });
+      menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+        document.body.classList.remove("nav-open");
+        toggle.setAttribute("aria-expanded", "false");
+      }));
+    </script>
+  </body>
+</html>
