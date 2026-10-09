@@ -31,7 +31,8 @@
     content.className = "project-card__content";
 
     const service = document.createElement("span");
-    service.textContent = project.service[language] || project.service.es;
+    const homeService = project.homeService || project.service;
+    service.textContent = homeService[language] || homeService.es;
 
     const title = document.createElement("h3");
     title.textContent = project.name;
@@ -97,7 +98,9 @@
   const renderProjectsGrid = async (grid, language = getLanguage()) => {
     if (!grid || !window.PROJECTS_DATA?.length) return [];
 
-    const sortedProjects = window.PROJECTS_DATA;
+    const sortedProjects = window.PROJECTS_DATA.filter(
+      (project) => !project.carouselOnly
+    );
     const fragment = document.createDocumentFragment();
 
     sortedProjects.forEach((project) => {
@@ -122,7 +125,8 @@
       const image = card.querySelector("img");
 
       if (label) {
-        label.textContent = project.service[language] || project.service.es;
+        const homeService = project.homeService || project.service;
+        label.textContent = homeService[language] || homeService.es;
       }
 
       if (image && !card.hasAttribute("aria-hidden")) {

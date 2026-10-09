@@ -7,6 +7,52 @@ const hoverPaths = (slug, count) =>
 
 window.PROJECTS_DATA = [
   {
+    id: "prueba",
+    name: "prueba",
+    cover: "assets/portfolio-jpg/muvon.jpg",
+    alt: {
+      es: "Proyecto prueba",
+      en: "Test project",
+    },
+    service: {
+      es: "Proyecto",
+      en: "Project",
+    },
+    categories: ["otros"],
+    hoverImages: hoverPaths("muvon", 4),
+    carouselOnly: true,
+  },
+  {
+    id: "rut",
+    name: "RUT",
+    cover: "assets/portfolio-jpg/RUT_Branding-01.webp",
+    alt: {
+      es: "Branding y packaging de RUT",
+      en: "Branding and packaging for RUT",
+    },
+    service: {
+      es: "Branding / Packaging",
+      en: "Branding / Packaging",
+    },
+    homeService: {
+      es: "Branding",
+      en: "Branding",
+    },
+    categories: ["branding", "packaging"],
+    hoverImages: [
+      "assets/projects-hover/rut/RUT_Branding-01.webp",
+      "assets/projects-hover/rut/RUT_Branding-02.webp",
+      "assets/projects-hover/rut/RUT_Branding-03.webp",
+      "assets/projects-hover/rut/RUT_Branding-04.webp",
+      "assets/projects-hover/rut/RUT_Branding-05.webp",
+      "assets/projects-hover/rut/RUT_Branding-06.webp",
+      "assets/projects-hover/rut/RUT_Branding-07.webp",
+      "assets/projects-hover/rut/RUT_Branding-08.webp",
+      "assets/projects-hover/rut/RUT_Branding-12.webp",
+      "assets/projects-hover/rut/RUT_Branding-13.webp",
+    ],
+  },
+  {
     id: "akari",
     name: "AKARI",
     cover: "assets/portfolio-jpg/Akari.jpg",
@@ -50,7 +96,7 @@ window.PROJECTS_DATA = [
     },
     categories: ["branding", "packaging"],
     hoverImages: hoverPaths("olen-aroa", 6),
-    carouselLink: "proyectos.html",
+    carouselLink: "proyectos/",
   },
   {
     id: "valentina",
