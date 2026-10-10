@@ -7,22 +7,6 @@ const hoverPaths = (slug, count) =>
 
 window.PROJECTS_DATA = [
   {
-    id: "prueba",
-    name: "prueba",
-    cover: "assets/portfolio-jpg/muvon.jpg",
-    alt: {
-      es: "Proyecto prueba",
-      en: "Test project",
-    },
-    service: {
-      es: "Proyecto",
-      en: "Project",
-    },
-    categories: ["otros"],
-    hoverImages: hoverPaths("muvon", 4),
-    carouselOnly: true,
-  },
-  {
     id: "rut",
     name: "RUT",
     cover: "assets/portfolio-jpg/RUT_Branding-01.webp",

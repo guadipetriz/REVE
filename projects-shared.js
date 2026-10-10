@@ -98,9 +98,7 @@
   const renderProjectsGrid = async (grid, language = getLanguage()) => {
     if (!grid || !window.PROJECTS_DATA?.length) return [];
 
-    const sortedProjects = window.PROJECTS_DATA.filter(
-      (project) => !project.carouselOnly
-    );
+    const sortedProjects = window.PROJECTS_DATA;
     const fragment = document.createDocumentFragment();
 
     sortedProjects.forEach((project) => {
