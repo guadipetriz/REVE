@@ -49,7 +49,12 @@
     article.className = "grid-project";
     article.dataset.projectId = project.id;
     article.dataset.category = project.categories.join(" ");
-    article.dataset.hoverImages = project.hoverImages.join(",");
+    if (project.hoverImages?.length) {
+      article.dataset.hoverImages = project.hoverImages.join(",");
+    }
+    if (project.hoverVideos?.length) {
+      article.dataset.hoverVideos = project.hoverVideos.join(",");
+    }
     article.tabIndex = 0;
 
     const imageWrap = document.createElement("div");
@@ -78,7 +83,9 @@
   const renderPortfolioCarousel = async (track, language = getLanguage()) => {
     if (!track || !window.PROJECTS_DATA?.length) return [];
 
-    const sortedProjects = window.PROJECTS_DATA;
+    const sortedProjects = window.PROJECTS_DATA.filter(
+      (project) => project.showOnHome !== false
+    );
     const fragment = document.createDocumentFragment();
 
     sortedProjects.forEach((project) => {
@@ -189,6 +196,56 @@
 
       imageWrap.addEventListener("mouseenter", startSlideshow);
       imageWrap.addEventListener("mouseleave", stopSlideshow);
+    });
+
+    document.querySelectorAll(".grid-project[data-hover-videos]").forEach((project) => {
+      const imageWrap = project.querySelector(".grid-project__image");
+      const img = project.querySelector(".grid-project__image img");
+
+      if (!imageWrap || !img) return;
+
+      const hoverVideos = project.dataset.hoverVideos
+        .split(",")
+        .map((src) => src.trim())
+        .filter(Boolean);
+
+      if (hoverVideos.length === 0) return;
+
+      const video = document.createElement("video");
+      video.className = "grid-project__hover-video";
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.setAttribute("aria-hidden", "true");
+      imageWrap.appendChild(video);
+
+      let videoIndex = 0;
+      let isHovering = false;
+
+      const playVideo = (index) => {
+        videoIndex = index;
+        video.src = hoverVideos[videoIndex];
+        video.load();
+        video.play().catch(() => {});
+      };
+
+      video.addEventListener("ended", () => {
+        if (isHovering) playVideo((videoIndex + 1) % hoverVideos.length);
+      });
+
+      imageWrap.addEventListener("mouseenter", () => {
+        isHovering = true;
+        imageWrap.classList.add("is-playing-video");
+        playVideo(0);
+      });
+
+      imageWrap.addEventListener("mouseleave", () => {
+        isHovering = false;
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+        imageWrap.classList.remove("is-playing-video");
+      });
     });
   };
 

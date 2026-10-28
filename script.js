@@ -22,6 +22,7 @@ const packagesTitle = document.querySelector("[data-packages-title]");
 const packagesList = document.querySelector("[data-packages-list]");
 const processCards = document.querySelectorAll(".process-card");
 const processCardsSection = document.querySelector(".process-cards");
+const testimonialsSection = document.querySelector("[data-testimonials-section]");
 const contactSection = document.querySelector(".contact");
 const contactLogo = document.querySelector(".contact__brand img");
 const serviceHoverPreview = document.querySelector(".service-hover-preview");
@@ -118,7 +119,7 @@ const translations = {
     packsButton: "Ver packs",
     webActions: {
       quote: "Quiero cotizar mi página web",
-      express: "Servicio de web Express",
+      express: "Quiero cotizar mi web Express",
     },
     processLabel: "Proceso creativo",
     processCards: [
@@ -127,6 +128,12 @@ const translations = {
       "Trabajando para Buenos Aires, Costa Rica, España y Francia.",
       "Experiencia en retail, gastronomía y hotelería.",
     ],
+    testimonial: {
+      ticker: "TESTIMONIOS: ASÍ FUE TRABAJAR JUNTOS",
+      scoreLabel: "10 puntos de 10",
+      quote: "La claridad del proceso y el cumplimiento del mismo, el compromiso con cada plazo y el nivel de producción, y también la permeabilidad y buena predisposición para los ajustes y cambios. También el criterio profesional.",
+      client: "Sofía — Forma de Agua",
+    },
     contactTitle: "Don't be shy, give RÊVE a try!",
     contactButton: "Escribinos",
     footerCredit: "Por Guadalupe Petriz",
@@ -385,6 +392,12 @@ const translations = {
       "Working for Buenos Aires, Costa Rica, Spain and France.",
       "Experience in retail, gastronomy and hospitality.",
     ],
+    testimonial: {
+      ticker: "TESTIMONIALS: THIS IS HOW WORKING TOGETHER FELT",
+      scoreLabel: "10 points out of 10",
+      quote: "The clarity of the process and how it was carried out, the commitment to every deadline and the level of production, as well as the openness and great attitude toward adjustments and changes. Also, the professional judgment.",
+      client: "Sofía — Forma de Agua",
+    },
     contactTitle: "Don't be shy, give RÊVE a try!",
     contactButton: "Escribinos",
     footerCredit: "By Guadalupe Petriz",
@@ -836,6 +849,18 @@ const setLanguage = (language) => {
     if (text) text.textContent = copy.processCards[index];
   });
 
+  const testimonial = copy.testimonial;
+  const testimonialQuote = document.querySelector("[data-testimonial-quote]");
+  const testimonialClient = document.querySelector("[data-testimonial-client]");
+  const testimonialScore = document.querySelector("[data-testimonial-score-label]");
+
+  if (testimonialQuote) testimonialQuote.textContent = testimonial.quote;
+  if (testimonialClient) testimonialClient.textContent = testimonial.client;
+  if (testimonialScore) testimonialScore.setAttribute("aria-label", testimonial.scoreLabel);
+  document.querySelectorAll(".testimonials__ticker-text, .testimonials__mobile-title").forEach((item) => {
+    item.textContent = testimonial.ticker;
+  });
+
   const contactTitle = document.querySelector("[data-contact-title]");
   const contactButton = document.querySelector(".contact-gooey-button__label");
   const footerSocial = document.querySelector(".footer ul");
@@ -1005,12 +1030,16 @@ if (languageToggle) {
 
 // Acordeón horizontal de servicios.
 if (servicePanels.length) {
+  const mobileServicesQuery = window.matchMedia("(max-width: 900px)");
+
   servicePanels.forEach((panel) => {
     const tab = panel.querySelector(".service-panel__tab");
 
     tab.addEventListener("click", () => {
+      const shouldClose = mobileServicesQuery.matches && panel.classList.contains("is-active");
+
       servicePanels.forEach((item) => {
-        const isActive = item === panel;
+        const isActive = item === panel && !shouldClose;
 
         item.classList.toggle("is-active", isActive);
         item
@@ -1018,6 +1047,16 @@ if (servicePanels.length) {
           .setAttribute("aria-expanded", String(isActive));
       });
     });
+  });
+
+  mobileServicesQuery.addEventListener("change", (event) => {
+    if (event.matches || document.querySelector(".service-panel.is-active")) return;
+
+    const firstPanel = servicePanels[0];
+    firstPanel.classList.add("is-active");
+    firstPanel
+      .querySelector(".service-panel__tab")
+      .setAttribute("aria-expanded", "true");
   });
 }
 
@@ -1234,4 +1273,14 @@ if (processCards.length) {
       }, 420);
     });
   });
+}
+
+if (testimonialsSection) {
+  const testimonialObserver = new IntersectionObserver(([entry], observer) => {
+    if (!entry.isIntersecting) return;
+    testimonialsSection.classList.add("is-visible");
+    observer.disconnect();
+  }, { threshold: 0.35 });
+
+  testimonialObserver.observe(testimonialsSection);
 }

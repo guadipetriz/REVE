@@ -861,6 +861,116 @@ h2 {
   }
 }
 
+.testimonials {
+  position: relative;
+  overflow: hidden;
+  padding: 0 0 clamp(90px, 11vw, 150px);
+  background: #e24b37;
+  color: #530a05;
+}
+
+.testimonials__ticker {
+  overflow: hidden;
+  border-block: 1px solid rgba(83, 10, 5, 0.2);
+  background: #9bc5ff;
+  transform: rotate(-1.2deg) scale(1.02);
+}
+
+.testimonials__ticker-track {
+  display: flex;
+  width: max-content;
+  animation: testimonials-ticker 20s linear infinite;
+}
+
+.testimonials__ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 22px 15px 0;
+  white-space: nowrap;
+}
+
+.testimonials__ticker-text {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.testimonials__ticker-item img {
+  width: clamp(22px, 2.5vw, 32px);
+  height: clamp(22px, 2.5vw, 32px);
+  object-fit: contain;
+}
+
+.testimonials__inner {
+  width: min(780px, calc(100% - 40px));
+  margin: 0 auto;
+  padding-top: clamp(82px, 10vw, 128px);
+  text-align: center;
+}
+
+.testimonials__mobile-intro {
+  display: none;
+}
+
+.testimonial-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1px, 0.35vw, 5px);
+  margin-bottom: clamp(24px, 3vw, 34px);
+}
+
+.testimonial-rating span {
+  color: rgba(83, 10, 5, 0.24);
+  font-family: Arial, sans-serif;
+  font-size: clamp(1.05rem, 2vw, 1.55rem);
+  line-height: 1;
+  transform: scale(0.78);
+  transition: color 320ms ease, transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.testimonials.is-visible .testimonial-rating span {
+  color: #9bc5ff;
+  transform: scale(1);
+  transition-delay: calc(var(--star-index) * 110ms);
+}
+
+.testimonial-rating span:nth-child(1) { --star-index: 0; }
+.testimonial-rating span:nth-child(2) { --star-index: 1; }
+.testimonial-rating span:nth-child(3) { --star-index: 2; }
+.testimonial-rating span:nth-child(4) { --star-index: 3; }
+.testimonial-rating span:nth-child(5) { --star-index: 4; }
+.testimonial-rating span:nth-child(6) { --star-index: 5; }
+.testimonial-rating span:nth-child(7) { --star-index: 6; }
+.testimonial-rating span:nth-child(8) { --star-index: 7; }
+.testimonial-rating span:nth-child(9) { --star-index: 8; }
+.testimonial-rating span:nth-child(10) { --star-index: 9; }
+
+.testimonial-quote {
+  margin: 0;
+}
+
+.testimonial-quote p {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.35vw, 2.05rem);
+  font-style: italic;
+  line-height: 1.08;
+}
+
+.testimonial-quote footer {
+  margin-top: clamp(22px, 3vw, 32px);
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.3vw, 1.08rem);
+  letter-spacing: 0.03em;
+}
+
+@keyframes testimonials-ticker {
+  to { transform: translateX(-50%); }
+}
+
 .process-cards {
   margin-top: clamp(78px, 9vw, 120px);
   margin-bottom: clamp(78px, 9vw, 120px);
@@ -1384,13 +1494,23 @@ h2 {
 }
 .grid-project[hidden] { display: none; }
 .grid-project { display: flex; flex-direction: column; background: transparent; }
-.grid-project__image { aspect-ratio: 3 / 4; overflow: hidden; background: var(--color-soft); cursor: pointer; }
+.grid-project__image { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: var(--color-soft); cursor: pointer; }
 .grid-project__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: opacity 280ms ease;
 }
+.grid-project__hover-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+}
+.grid-project__image.is-playing-video .grid-project__hover-video { opacity: 1; }
 .grid-project__content {
   display: flex;
   flex-direction: column;
@@ -1574,12 +1694,17 @@ h2 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+
 }
 
 @media (max-width: 900px) {
   .hero {
     min-height: calc(88vh - 76px);
     padding-top: clamp(76px, 10vh, 120px);
+  }
+
+  .testimonials {
+    margin-top: 20px;
   }
 
   .services-accordion {
@@ -1763,6 +1888,43 @@ h2 {
 
   .services {
     scroll-margin-top: 68px;
+  }
+
+  .testimonials__ticker,
+  .testimonial-rating {
+    display: none;
+  }
+
+  .testimonials__mobile-intro {
+    display: grid;
+    justify-items: center;
+    gap: 24px;
+    margin-bottom: 34px;
+  }
+
+  .testimonials__mobile-title {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .testimonials__mobile-intro img {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+  }
+
+  .testimonials__inner {
+    width: min(100% - 28px, 780px);
+  }
+
+  .testimonial-quote p {
+    font-size: clamp(1.25rem, 5.5vw, 1.6rem);
   }
 
   .nav-toggle {

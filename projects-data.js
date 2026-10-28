@@ -7,6 +7,44 @@ const hoverPaths = (slug, count) =>
 
 window.PROJECTS_DATA = [
   {
+    id: "diluca",
+    name: "DILUCA",
+    cover: "assets/portfolio-jpg/Diluca.jpg",
+    alt: {
+      es: "Rebranding de DILUCA",
+      en: "DILUCA rebranding",
+    },
+    service: {
+      es: "Rebranding",
+      en: "Rebranding",
+    },
+    categories: ["branding"],
+    hoverImages: [],
+    showOnHome: false,
+  },
+  {
+    id: "el-puente",
+    name: "Tartas y empanadas El Puente",
+    cover: "assets/portfolio-jpg/ElPuente-tarta.webp",
+    alt: {
+      es: "Packaging de Tartas y empanadas El Puente",
+      en: "Packaging for Tartas y empanadas El Puente",
+    },
+    service: {
+      es: "Packaging",
+      en: "Packaging",
+    },
+    categories: ["packaging"],
+    hoverImages: [],
+    hoverVideos: [
+      "assets/projects-hover/el-puente/1.mp4",
+      "assets/projects-hover/el-puente/2.mp4",
+      "assets/projects-hover/el-puente/3.mp4",
+      "assets/projects-hover/el-puente/4.mp4",
+    ],
+    showOnHome: false,
+  },
+  {
     id: "rut",
     name: "RUT",
     cover: "assets/portfolio-jpg/RUT_Branding-01.webp",
