@@ -211,39 +211,48 @@
 
       if (hoverVideos.length === 0) return;
 
-      const video = document.createElement("video");
-      video.className = "grid-project__hover-video";
-      video.muted = true;
-      video.playsInline = true;
-      video.preload = "metadata";
-      video.setAttribute("aria-hidden", "true");
-      imageWrap.appendChild(video);
+      const videos = hoverVideos.map((src) => {
+        const video = document.createElement("video");
+        video.className = "grid-project__hover-video";
+        video.src = src;
+        video.muted = true;
+        video.playsInline = true;
+        video.preload = "auto";
+        video.setAttribute("aria-hidden", "true");
+        imageWrap.appendChild(video);
+        return video;
+      });
 
-      let videoIndex = 0;
       let isHovering = false;
 
       const playVideo = (index) => {
-        videoIndex = index;
-        video.src = hoverVideos[videoIndex];
-        video.load();
-        video.play().catch(() => {});
+        const video = videos[index];
+        video.currentTime = 0;
+        video.play().then(() => {
+          if (!isHovering) return;
+          videos.forEach((item) => item.classList.toggle("is-active", item === video));
+          imageWrap.classList.add("is-playing-video");
+        }).catch(() => {});
       };
 
-      video.addEventListener("ended", () => {
-        if (isHovering) playVideo((videoIndex + 1) % hoverVideos.length);
+      videos.forEach((video, index) => {
+        video.addEventListener("ended", () => {
+          if (isHovering) playVideo((index + 1) % videos.length);
+        });
       });
 
       imageWrap.addEventListener("mouseenter", () => {
         isHovering = true;
-        imageWrap.classList.add("is-playing-video");
         playVideo(0);
       });
 
       imageWrap.addEventListener("mouseleave", () => {
         isHovering = false;
-        video.pause();
-        video.removeAttribute("src");
-        video.load();
+        videos.forEach((video) => {
+          video.pause();
+          video.currentTime = 0;
+          video.classList.remove("is-active");
+        });
         imageWrap.classList.remove("is-playing-video");
       });
     });

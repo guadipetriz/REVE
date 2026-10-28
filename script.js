@@ -130,7 +130,7 @@ const translations = {
     ],
     testimonial: {
       ticker: "TESTIMONIOS: ASÍ FUE TRABAJAR JUNTOS",
-      scoreLabel: "10 puntos de 10",
+      scoreLabel: "5 estrellas de 5",
       quote: "La claridad del proceso y el cumplimiento del mismo, el compromiso con cada plazo y el nivel de producción, y también la permeabilidad y buena predisposición para los ajustes y cambios. También el criterio profesional.",
       client: "Sofía — Forma de Agua",
     },
@@ -394,7 +394,7 @@ const translations = {
     ],
     testimonial: {
       ticker: "TESTIMONIALS: THIS IS HOW WORKING TOGETHER FELT",
-      scoreLabel: "10 points out of 10",
+      scoreLabel: "5 stars out of 5",
       quote: "The clarity of the process and how it was carried out, the commitment to every deadline and the level of production, as well as the openness and great attitude toward adjustments and changes. Also, the professional judgment.",
       client: "Sofía — Forma de Agua",
     },
@@ -857,7 +857,15 @@ const setLanguage = (language) => {
   if (testimonialQuote) testimonialQuote.textContent = testimonial.quote;
   if (testimonialClient) testimonialClient.textContent = testimonial.client;
   if (testimonialScore) testimonialScore.setAttribute("aria-label", testimonial.scoreLabel);
-  document.querySelectorAll(".testimonials__ticker-text, .testimonials__mobile-title").forEach((item) => {
+  document.querySelectorAll(".testimonials__ticker-text").forEach((item) => {
+    const words = testimonial.ticker.split(" ");
+    item.replaceChildren(...words.map((word) => {
+      const wordElement = document.createElement("span");
+      wordElement.textContent = word;
+      return wordElement;
+    }));
+  });
+  document.querySelectorAll(".testimonials__mobile-title").forEach((item) => {
     item.textContent = testimonial.ticker;
   });
 
