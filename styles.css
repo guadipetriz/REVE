@@ -925,7 +925,7 @@ h2 {
   align-items: center;
   justify-content: center;
   gap: clamp(1px, 0.35vw, 5px);
-  margin-bottom: clamp(24px, 3vw, 34px);
+  margin-bottom: clamp(16px, 2vw, 22px);
 }
 
 .testimonial-rating span {
@@ -948,6 +948,15 @@ h2 {
 .testimonial-rating span:nth-child(3) { --star-index: 2; }
 .testimonial-rating span:nth-child(4) { --star-index: 3; }
 .testimonial-rating span:nth-child(5) { --star-index: 4; }
+
+.testimonial-label {
+  margin: 0 0 clamp(18px, 2.5vw, 28px);
+  font-family: var(--font-display);
+  font-size: clamp(0.82rem, 1.25vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
 
 .testimonial-quote {
   margin: 0;
