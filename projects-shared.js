@@ -112,14 +112,20 @@
 
     if (project.homeMedia) {
       const video = document.createElement("video");
-      video.src = project.homeMedia;
+      const source = document.createElement("source");
+      source.src = new URL(project.homeMedia, document.baseURI).href;
+      source.type = "video/mp4";
       video.poster = project.cover;
       video.muted = true;
+      video.defaultMuted = true;
       video.loop = true;
       video.autoplay = true;
       video.playsInline = true;
-      video.preload = "metadata";
+      video.preload = "auto";
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
       video.setAttribute("aria-hidden", "true");
+      video.appendChild(source);
       mediaWrap.appendChild(video);
     } else {
       const image = document.createElement("img");
