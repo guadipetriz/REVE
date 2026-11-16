@@ -10,8 +10,7 @@ let heroKeywords = document.querySelectorAll(".hero-keyword");
 const heroTitle = document.querySelector("#hero-title");
 const heroPreviewGroups = document.querySelectorAll(".hero-preview-group");
 const heroActions = document.querySelectorAll("[data-hero-action]");
-const portfolioCarousel = document.querySelector(".carousel");
-const portfolioTrack = document.querySelector(".carousel__track");
+const portfolioBento = document.querySelector(".portfolio-bento");
 const portfolioTitle = document.querySelector("[data-portfolio-title]");
 const servicePanels = document.querySelectorAll(".service-panel");
 const packagesModal = document.querySelector("#branding-packages-modal");
@@ -71,7 +70,7 @@ const translations = {
     ticker:
       "DISEÑO Y DESARROLLO WEB — DISEÑO — REDES SOCIALES — FOTOGRAFÍA — DIRECCIÓN DE ARTE — NAMING — BRANDING —",
     tickerLabel: "Servicios destacados",
-    carouselLabel: "Carrusel infinito de proyectos",
+    carouselLabel: "Galería interactiva de proyectos",
     servicesAccordionLabel: "Acordeón de servicios",
     portfolioTitle: "Últimos proyectos",
     projectLabels: [
@@ -336,7 +335,7 @@ const translations = {
     ticker:
       "WEBSITE DESIGN AND DEVELOPMENT — DESIGN — SOCIAL MEDIA — PHOTOGRAPHY — ART DIRECTION — NAMING — BRANDING —",
     tickerLabel: "Featured services",
-    carouselLabel: "Infinite project carousel",
+    carouselLabel: "Interactive project gallery",
     servicesAccordionLabel: "Services accordion",
     portfolioTitle: "Latest projects",
     projectLabels: [
@@ -801,14 +800,14 @@ const setLanguage = (language) => {
 
   const heroActionsGroup = document.querySelector(".hero__actions");
   const tickerSection = document.querySelector(".ticker");
-  const carousel = document.querySelector(".carousel");
+  const bentoGallery = document.querySelector(".portfolio-bento");
   const servicesAccordion = document.querySelector(".services-accordion");
 
   if (heroActionsGroup) {
     heroActionsGroup.setAttribute("aria-label", copy.heroActionsLabel);
   }
   if (tickerSection) tickerSection.setAttribute("aria-label", copy.tickerLabel);
-  if (carousel) carousel.setAttribute("aria-label", copy.carouselLabel);
+  if (bentoGallery) bentoGallery.setAttribute("aria-label", copy.carouselLabel);
   if (servicesAccordion) {
     servicesAccordion.setAttribute("aria-label", copy.servicesAccordionLabel);
   }
@@ -819,7 +818,7 @@ const setLanguage = (language) => {
 
   if (portfolioTitle) portfolioTitle.textContent = copy.portfolioTitle;
   if (window.ProjectsShared) {
-    window.ProjectsShared.applyCarouselLabels(language);
+    window.ProjectsShared.applyBentoLabels(language);
   }
 
   servicePanels.forEach((panel, index) => {
@@ -894,114 +893,57 @@ const setLanguage = (language) => {
   }
 };
 
-const initPortfolioCarousel = () => {
-  if (!portfolioCarousel || !portfolioTrack) return;
+const initPortfolioBento = () => {
+  if (!portfolioBento) return;
 
-  let carouselOffset = 0;
-  let carouselLoopWidth = 0;
-  let isCarouselDragging = false;
-  let isCarouselPaused = false;
-  let dragStartX = 0;
-  let dragStartOffset = 0;
-  const carouselSpeed = 0.42;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const videos = portfolioBento.querySelectorAll("video");
+  const cards = [...portfolioBento.querySelectorAll(".bento-card")];
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  let hoverTimer = null;
 
-  const measureCarousel = () => {
-    const trackStyles = window.getComputedStyle(portfolioTrack);
-    const trackGap = parseFloat(trackStyles.columnGap || trackStyles.gap) || 0;
-
-    carouselLoopWidth = portfolioTrack.scrollWidth / 2 + trackGap / 2;
-  };
-
-  const normalizeCarouselOffset = (offset) => {
-    if (!carouselLoopWidth) return offset;
-
-    while (offset <= -carouselLoopWidth) {
-      offset += carouselLoopWidth;
-    }
-
-    while (offset > 0) {
-      offset -= carouselLoopWidth;
-    }
-
-    return offset;
-  };
-
-  const renderCarousel = () => {
-    carouselOffset = normalizeCarouselOffset(carouselOffset);
-    portfolioTrack.style.transform = `translateX(${carouselOffset}px)`;
-  };
-
-  const animateCarousel = () => {
-    if (!isCarouselDragging && !isCarouselPaused) {
-      carouselOffset -= carouselSpeed;
-      renderCarousel();
-    }
-
-    window.requestAnimationFrame(animateCarousel);
-  };
-
-  const startCarouselDrag = (event) => {
-    isCarouselDragging = true;
-    dragStartX = event.clientX;
-    dragStartOffset = carouselOffset;
-    portfolioCarousel.classList.add("is-dragging");
-    portfolioCarousel.setPointerCapture(event.pointerId);
-  };
-
-  const moveCarouselDrag = (event) => {
-    if (!isCarouselDragging) return;
-
-    carouselOffset = dragStartOffset + event.clientX - dragStartX;
-    renderCarousel();
-  };
-
-  const endCarouselDrag = (event) => {
-    if (!isCarouselDragging) return;
-
-    isCarouselDragging = false;
-    portfolioCarousel.classList.remove("is-dragging");
-
-    if (portfolioCarousel.hasPointerCapture(event.pointerId)) {
-      portfolioCarousel.releasePointerCapture(event.pointerId);
-    }
-  };
-
-  measureCarousel();
-  renderCarousel();
-  window.requestAnimationFrame(animateCarousel);
-
-  portfolioCarousel.addEventListener("pointerdown", startCarouselDrag);
-  portfolioCarousel.addEventListener("pointermove", moveCarouselDrag);
-  portfolioCarousel.addEventListener("pointerup", endCarouselDrag);
-  portfolioCarousel.addEventListener("pointercancel", endCarouselDrag);
-  portfolioCarousel.querySelectorAll(".project-card").forEach((card) => {
-    card.addEventListener("mouseenter", () => {
-      isCarouselPaused = true;
+  const activateCard = (activeCard = null) => {
+    cards.forEach((card) => {
+      card.classList.toggle("is-expanded", card === activeCard);
     });
-    card.addEventListener("mouseleave", () => {
-      isCarouselPaused = false;
+  };
+
+  const scheduleCard = (activeCard, delay = 65) => {
+    window.clearTimeout(hoverTimer);
+    hoverTimer = window.setTimeout(() => activateCard(activeCard), delay);
+  };
+
+  cards.forEach((card) => {
+    card.addEventListener("pointerenter", () => {
+      if (canHover) scheduleCard(card);
     });
-    card.addEventListener("focusin", () => {
-      isCarouselPaused = true;
-    });
-    card.addEventListener("focusout", () => {
-      isCarouselPaused = false;
+    card.addEventListener("focusin", () => activateCard(card));
+    card.addEventListener("focusout", (event) => {
+      if (!portfolioBento.contains(event.relatedTarget)) activateCard();
     });
   });
-  window.addEventListener("resize", () => {
-    measureCarousel();
-    renderCarousel();
+
+  portfolioBento.addEventListener("pointerleave", () => {
+    if (canHover) scheduleCard(null, 140);
   });
+
+  if (videos.length) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (entry.isIntersecting && !reduceMotion) video.play().catch(() => {});
+        else video.pause();
+      });
+    }, { threshold: 0.25 });
+    videos.forEach((video) => videoObserver.observe(video));
+  }
+
 };
 
 const bootstrapPortfolioSection = async () => {
-  if (!portfolioTrack || !window.ProjectsShared) return;
-
-  await window.ProjectsShared.renderPortfolioCarousel(
-    portfolioTrack,
-    currentLanguage
-  );
-  initPortfolioCarousel();
+  if (!portfolioBento || !window.ProjectsShared) return;
+  await window.ProjectsShared.renderPortfolioBento(portfolioBento, currentLanguage);
+  initPortfolioBento();
 };
 
 // Mantiene el año del footer actualizado automáticamente.

@@ -26,6 +26,11 @@
     const image = document.createElement("img");
     image.src = project.cover;
     image.alt = duplicate ? "" : project.alt[language] || project.alt.es;
+    if (project.fallbackCover) {
+      image.addEventListener("error", () => {
+        image.src = project.fallbackCover;
+      }, { once: true });
+    }
 
     const content = document.createElement("div");
     content.className = "project-card__content";
@@ -63,6 +68,11 @@
     const image = document.createElement("img");
     image.src = project.cover;
     image.alt = project.alt[language] || project.alt.es;
+    if (project.fallbackCover) {
+      image.addEventListener("error", () => {
+        image.src = project.fallbackCover;
+      }, { once: true });
+    }
 
     const content = document.createElement("div");
     content.className = "grid-project__content";
@@ -76,6 +86,61 @@
     imageWrap.appendChild(image);
     content.append(title, service);
     article.append(imageWrap, content);
+
+    return article;
+  };
+
+  const bentoSizes = ["hero", "regular", "tall", "wide", "small", "regular", "wide", "tall", "regular", "small"];
+
+  const buildBentoProject = (project, language, index) => {
+    const article = document.createElement("article");
+    const mediaButton = document.createElement("a");
+    const mediaWrap = document.createElement("span");
+    const caption = document.createElement("span");
+    const category = document.createElement("span");
+    const title = document.createElement("strong");
+    const homeService = project.homeService || project.service;
+
+    article.className = `bento-card bento-card--${project.homeSize || bentoSizes[index % bentoSizes.length]}`;
+    article.dataset.projectId = project.id;
+    article.dataset.mediaType = project.homeMedia ? "video" : "image";
+
+    mediaButton.className = "bento-card__button";
+    mediaButton.href = project.carouselLink || "proyectos/";
+    mediaButton.setAttribute("aria-label", `${project.name}: ${homeService[language] || homeService.es}`);
+    mediaWrap.className = "bento-card__media";
+
+    if (project.homeMedia) {
+      const video = document.createElement("video");
+      video.src = project.homeMedia;
+      video.poster = project.cover;
+      video.muted = true;
+      video.loop = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.setAttribute("aria-hidden", "true");
+      mediaWrap.appendChild(video);
+    } else {
+      const image = document.createElement("img");
+      image.src = project.cover;
+      image.alt = project.alt[language] || project.alt.es;
+      image.loading = index > 3 ? "lazy" : "eager";
+      if (project.fallbackCover) {
+        image.addEventListener("error", () => {
+          image.src = project.fallbackCover;
+        }, { once: true });
+      }
+      mediaWrap.appendChild(image);
+    }
+
+    caption.className = "bento-card__caption";
+    category.className = "bento-card__category";
+    category.textContent = homeService[language] || homeService.es;
+    title.textContent = project.name;
+    caption.append(category, title);
+    mediaButton.append(mediaWrap, caption);
+    article.appendChild(mediaButton);
 
     return article;
   };
@@ -100,6 +165,47 @@
 
     track.replaceChildren(fragment);
     return sortedProjects;
+  };
+
+  const renderPortfolioBento = async (grid, language = getLanguage()) => {
+    if (!grid || !window.PROJECTS_DATA?.length) return [];
+
+    const homeProjectIds = [
+      "la-vinofeca",
+      "rut",
+      "akari",
+      "garage-bar",
+      "olen-aroa",
+      "dos-orillas",
+      "valentina",
+      "el-puente",
+    ];
+    const projects = homeProjectIds
+      .map((id) => window.PROJECTS_DATA.find((project) => project.id === id))
+      .filter(Boolean);
+    const cards = projects.map((project, index) => {
+      const card = buildBentoProject(project, language, index);
+      card.classList.add(`bento-card--layout-${index + 1}`);
+      return card;
+    });
+
+    grid.replaceChildren(...cards);
+    return projects;
+  };
+
+  const applyBentoLabels = (language = getLanguage()) => {
+    document.querySelectorAll(".bento-card[data-project-id]").forEach((card) => {
+      const project = window.PROJECTS_DATA?.find((item) => item.id === card.dataset.projectId);
+      if (!project) return;
+      const homeService = project.homeService || project.service;
+      const service = homeService[language] || homeService.es;
+      const category = card.querySelector(".bento-card__category");
+      const button = card.querySelector(".bento-card__button");
+      const image = card.querySelector("img");
+      if (category) category.textContent = service;
+      if (button) button.setAttribute("aria-label", `${project.name}: ${service}`);
+      if (image) image.alt = project.alt[language] || project.alt.es;
+    });
   };
 
   const renderProjectsGrid = async (grid, language = getLanguage()) => {
@@ -260,8 +366,10 @@
 
   window.ProjectsShared = {
     renderPortfolioCarousel,
+    renderPortfolioBento,
     renderProjectsGrid,
     applyCarouselLabels,
+    applyBentoLabels,
     initProjectHoverSlideshow,
   };
 })();

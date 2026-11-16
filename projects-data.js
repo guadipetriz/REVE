@@ -7,6 +7,21 @@ const hoverPaths = (slug, count) =>
 
 window.PROJECTS_DATA = [
   {
+    id: "la-vinofeca",
+    name: "La Vinofeca",
+    cover: "assets/portfolio-jpg/la-vinofeca.jpg",
+    fallbackCover: "assets/services/branding/branding-09.jpg",
+    alt: {
+      es: "Branding de La Vinofeca",
+      en: "Branding for La Vinofeca",
+    },
+    service: {
+      es: "Branding",
+      en: "Branding",
+    },
+    categories: ["branding"],
+  },
+  {
     id: "rut",
     name: "RUT",
     cover: "assets/portfolio-jpg/RUT_Branding-01.webp",
@@ -50,6 +65,7 @@ window.PROJECTS_DATA = [
     },
     categories: ["branding", "packaging"],
     hoverImages: hoverPaths("Akari", 6),
+    homeMedia: "assets/portfolio-jpg/akari.mp4",
   },
   {
     id: "garage-bar",
@@ -80,6 +96,7 @@ window.PROJECTS_DATA = [
     },
     categories: ["branding", "packaging"],
     hoverImages: hoverPaths("olen-aroa", 6),
+    homeMedia: "assets/portfolio-jpg/olen.mp4",
     carouselLink: "proyectos/",
   },
   {
@@ -177,7 +194,8 @@ window.PROJECTS_DATA = [
       "assets/projects-hover/el-puente/3.mp4",
       "assets/projects-hover/el-puente/4.mp4",
     ],
-    showOnHome: false,
+    showOnHome: true,
+    homeMedia: "assets/projects-hover/el-puente/1.mp4",
   },
   {
     id: "diluca",
