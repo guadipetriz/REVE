@@ -34,8 +34,7 @@ window.PROJECTS_DATA = [
   {
     id: "forma-de-agua",
     name: "Forma de Agua",
-    cover: "assets/portfolio-jpg/forma-de-agua.jpg",
-    fallbackCover: "assets/projects-hover/forma-de-agua/REVE_Instagram_FdA-03.webp",
+    cover: "assets/projects-hover/forma-de-agua/REVE_Instagram_FdA-03.webp",
     alt: {
       es: "Branding de Forma de Agua",
       en: "Branding for Forma de Agua",
@@ -155,12 +154,12 @@ window.PROJECTS_DATA = [
     name: "Dos Orillas",
     cover: "assets/portfolio-jpg/dos-orillas.jpg",
     alt: {
-      es: "Identidad visual de Dos Orillas",
-      en: "Visual identity for Dos Orillas",
+      es: "Branding y diseño web de Dos Orillas",
+      en: "Branding and web design for Dos Orillas",
     },
     service: {
-      es: "Branding",
-      en: "Branding",
+      es: "Branding / Diseño web",
+      en: "Branding / Web Design",
     },
     categories: ["branding", "web"],
     hoverImages: hoverPaths("dos-orillas", 6),

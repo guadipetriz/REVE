@@ -901,6 +901,13 @@ const initPortfolioBento = () => {
   const cards = [...portfolioBento.querySelectorAll(".bento-card")];
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   let hoverTimer = null;
+  let firstHover = true;
+  let firstHoverTimer = null;
+
+  portfolioBento.querySelectorAll("img").forEach((image) => {
+    if (typeof image.decode !== "function") return;
+    image.decode().catch(() => {});
+  });
 
   const activateCard = (activeCard = null) => {
     cards.forEach((card) => {
@@ -915,7 +922,20 @@ const initPortfolioBento = () => {
 
   cards.forEach((card) => {
     card.addEventListener("pointerenter", () => {
-      if (canHover) scheduleCard(card);
+      if (!canHover) return;
+
+      if (firstHover) {
+        firstHover = false;
+        portfolioBento.classList.add("is-first-hover");
+        window.clearTimeout(firstHoverTimer);
+        firstHoverTimer = window.setTimeout(() => {
+          portfolioBento.classList.remove("is-first-hover");
+        }, 1500);
+        scheduleCard(card, 90);
+        return;
+      }
+
+      scheduleCard(card);
     });
     card.addEventListener("focusin", () => activateCard(card));
     card.addEventListener("focusout", (event) => {
