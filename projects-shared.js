@@ -54,6 +54,10 @@
     article.className = "grid-project";
     article.dataset.projectId = project.id;
     article.dataset.category = project.categories.join(" ");
+    article.dataset.defaultCover = project.cover;
+    if (project.webCover) {
+      article.dataset.webCover = project.webCover;
+    }
     if (project.hoverImages?.length) {
       article.dataset.hoverImages = project.hoverImages.join(",");
     }
@@ -85,6 +89,16 @@
 
     imageWrap.appendChild(image);
     content.append(title, service);
+    if (project.webUrl) {
+      const webLink = document.createElement("a");
+      webLink.className = "grid-project__web-link";
+      webLink.href = project.webUrl;
+      webLink.target = "_blank";
+      webLink.rel = "noopener noreferrer";
+      webLink.textContent = language === "en" ? "View website" : "Ver web";
+      webLink.hidden = true;
+      content.appendChild(webLink);
+    }
     article.append(imageWrap, content);
 
     return article;
@@ -131,7 +145,8 @@
       const image = document.createElement("img");
       image.src = project.cover;
       image.alt = project.alt[language] || project.alt.es;
-      image.loading = index > 3 ? "lazy" : "eager";
+      image.loading = "eager";
+      image.decoding = "async";
       if (project.fallbackCover) {
         image.addEventListener("error", () => {
           image.src = project.fallbackCover;
@@ -286,6 +301,7 @@
       };
 
       const startSlideshow = () => {
+        if (project.classList.contains("is-web-view")) return;
         if (slideTimer) return;
 
         frameIndex = 0;
@@ -303,11 +319,14 @@
           slideTimer = null;
         }
 
-        img.src = defaultSrc;
+        img.src = project.classList.contains("is-web-view")
+          ? project.dataset.webCover
+          : defaultSrc;
       };
 
       imageWrap.addEventListener("mouseenter", startSlideshow);
       imageWrap.addEventListener("mouseleave", stopSlideshow);
+      project.addEventListener("portfolio:filter-change", stopSlideshow);
     });
 
     document.querySelectorAll(".grid-project[data-hover-videos]").forEach((project) => {

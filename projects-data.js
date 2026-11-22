@@ -35,6 +35,7 @@ window.PROJECTS_DATA = [
     id: "forma-de-agua",
     name: "Forma de Agua",
     cover: "assets/portfolio-jpg/forma-de-agua.jpg",
+    fallbackCover: "assets/projects-hover/forma-de-agua/REVE_Instagram_FdA-03.webp",
     alt: {
       es: "Branding de Forma de Agua",
       en: "Branding for Forma de Agua",
@@ -161,8 +162,10 @@ window.PROJECTS_DATA = [
       es: "Branding",
       en: "Branding",
     },
-    categories: ["branding"],
-    hoverImages: hoverPaths("dos-orillas", 4),
+    categories: ["branding", "web"],
+    hoverImages: hoverPaths("dos-orillas", 6),
+    webCover: "assets/projects-hover/dos-orillas/06.jpg",
+    webUrl: "https://revestudio.com.ar/dosorillas/",
   },
   {
     id: "checkpoint-charlie",

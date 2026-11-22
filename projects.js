@@ -54,6 +54,18 @@ const bindProjectFilters = () => {
 
       projects.forEach((project) => {
         const categories = project.dataset.category.split(" ");
+        const showWebPresentation = category === "web" && project.dataset.webCover;
+        const image = project.querySelector(".grid-project__image img");
+        const webLink = project.querySelector(".grid-project__web-link");
+
+        project.dispatchEvent(new Event("portfolio:filter-change"));
+        project.classList.toggle("is-web-view", Boolean(showWebPresentation));
+        if (image) {
+          image.src = showWebPresentation
+            ? project.dataset.webCover
+            : project.dataset.defaultCover;
+        }
+        if (webLink) webLink.hidden = !showWebPresentation;
         project.hidden = category !== "all" && !categories.includes(category);
       });
     });
