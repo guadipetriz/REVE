@@ -183,7 +183,7 @@
       "garage-bar",
       "olen-aroa",
       "dos-orillas",
-      "valentina",
+      "forma-de-agua",
       "el-puente",
     ];
     const projects = homeProjectIds
